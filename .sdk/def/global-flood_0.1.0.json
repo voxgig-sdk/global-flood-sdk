@@ -1,0 +1,386 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Global Flood API",
+    "description": "Simulated river discharge at 5 km resolution from 1984 up to 7 months forecast. This API uses reanalysis and forecast data from the Global Flood Awareness System (GloFAS).",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Open-Meteo",
+      "url": "https://open-meteo.com"
+    },
+    "license": {
+      "name": "Attribution 4.0 International (CC BY 4.0)",
+      "url": "https://open-meteo.com/en/terms"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://flood-api.open-meteo.com",
+      "description": "Global Flood API"
+    },
+    {
+      "url": "https://customer-flood-api.open-meteo.com",
+      "description": "Commercial API with reserved resources"
+    }
+  ],
+  "paths": {
+    "/v1/flood": {
+      "get": {
+        "summary": "Get river discharge data",
+        "description": "Returns river discharge data from the largest river in a 5 km area for the given coordinates. Data includes historical reanalysis from 1984 and forecasts up to 7 months.",
+        "operationId": "getFloodData",
+        "tags": [
+          "Flood Data"
+        ],
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "Latitude (WGS84) of the location. Multiple coordinates can be comma separated (e.g., 52.52,48.85).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?\\d+\\.?\\d*(,-?\\d+\\.?\\d*)*$"
+            },
+            "example": "59.9"
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "Longitude (WGS84) of the location. Multiple coordinates can be comma separated (e.g., 13.41,2.35).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?\\d+\\.?\\d*(,-?\\d+\\.?\\d*)*$"
+            },
+            "example": "10.75"
+          },
+          {
+            "name": "daily",
+            "in": "query",
+            "description": "Daily flood variables to return. Can be comma separated or multiple daily parameters.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "river_discharge",
+                  "river_discharge_mean",
+                  "river_discharge_median",
+                  "river_discharge_max",
+                  "river_discharge_min",
+                  "river_discharge_p25",
+                  "river_discharge_p75"
+                ]
+              }
+            },
+            "style": "form",
+            "explode": false,
+            "example": "river_discharge"
+          },
+          {
+            "name": "timeformat",
+            "in": "query",
+            "description": "Time format for returned data. Use 'unixtime' for UNIX epoch time in seconds (GMT+0) or 'iso8601' for ISO8601 format.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "iso8601",
+                "unixtime"
+              ],
+              "default": "iso8601"
+            }
+          },
+          {
+            "name": "past_days",
+            "in": "query",
+            "description": "Number of past days to include in the response.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "forecast_days",
+            "in": "query",
+            "description": "Number of forecast days to return. Maximum 210 days.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 210,
+              "default": 92
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Start date for the time interval (ISO8601 format: yyyy-mm-dd). Data available from 1984-01-01.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2022-06-30"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "End date for the time interval (ISO8601 format: yyyy-mm-dd).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2022-07-30"
+          },
+          {
+            "name": "ensemble",
+            "in": "query",
+            "description": "If true, all forecast ensemble members will be returned.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "cell_selection",
+            "in": "query",
+            "description": "Preference for grid-cell selection. 'land' finds suitable grid-cell on land with similar elevation, 'sea' prefers grid-cells on sea, 'nearest' selects the nearest grid-cell.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "land",
+                "sea",
+                "nearest"
+              ],
+              "default": "nearest"
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "description": "Timezone for time values. If not set, GMT+0 is used.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Europe/Berlin"
+          },
+          {
+            "name": "apikey",
+            "in": "query",
+            "description": "API key for commercial use to access reserved API resources. Required when using the customer- server prefix.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with flood data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FloodResponse"
+                },
+                "example": {
+                  "latitude": 59.9,
+                  "longitude": 10.75,
+                  "generationtime_ms": 0.0627040863037109,
+                  "utc_offset_seconds": 0,
+                  "timezone": "GMT",
+                  "timezone_abbreviation": "GMT",
+                  "daily_units": {
+                    "river_discharge": "m³/s"
+                  },
+                  "daily": {
+                    "time": [
+                      "2025-03-03",
+                      "2025-03-04",
+                      "2025-03-05"
+                    ],
+                    "river_discharge": [
+                      8.04,
+                      8.75,
+                      8.93
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": true,
+                  "reason": "Cannot initialize WeatherVariable from invalid String value river_discharge for key daily"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FloodResponse": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "float",
+            "description": "WGS84 latitude of the center of the weather grid-cell"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float",
+            "description": "WGS84 longitude of the center of the weather grid-cell"
+          },
+          "generationtime_ms": {
+            "type": "number",
+            "format": "float",
+            "description": "Generation time of the forecast in milliseconds"
+          },
+          "utc_offset_seconds": {
+            "type": "integer",
+            "description": "UTC offset in seconds"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone identifier"
+          },
+          "timezone_abbreviation": {
+            "type": "string",
+            "description": "Timezone abbreviation"
+          },
+          "daily_units": {
+            "type": "object",
+            "description": "Units for each daily variable",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "daily": {
+            "type": "object",
+            "description": "Daily flood data",
+            "properties": {
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "description": "Array of ISO8601 timestamps or UNIX epoch times"
+              },
+              "river_discharge": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "description": "Daily river discharge rate in m³/s"
+              },
+              "river_discharge_mean": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "description": "Mean river discharge rate from ensemble members in m³/s"
+              },
+              "river_discharge_median": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "description": "Median river discharge rate from ensemble members in m³/s"
+              },
+              "river_discharge_max": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "description": "Maximum river discharge rate from ensemble members in m³/s"
+              },
+              "river_discharge_min": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "description": "Minimum river discharge rate from ensemble members in m³/s"
+              },
+              "river_discharge_p25": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "description": "25th percentile river discharge rate from ensemble members in m³/s"
+              },
+              "river_discharge_p75": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "description": "75th percentile river discharge rate from ensemble members in m³/s"
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "description": "Indicates an error occurred"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Description of the error"
+          }
+        },
+        "required": [
+          "error",
+          "reason"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "apikey",
+        "description": "API key for commercial use"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Flood Data",
+      "description": "River discharge data from GloFAS (Global Flood Awareness System)"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API Documentation",
+    "url": "https://open-meteo.com/en/docs/flood-api"
+  }
+}

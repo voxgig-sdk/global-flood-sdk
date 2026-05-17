@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "flood": {
+      "FLOOD00": {
+        "daily": {},
+        "daily_unit": {},
+        "generationtime_m": 82,
+        "latitude": 83,
+        "longitude": 84,
+        "timezone": "s55",
+        "timezone_abbreviation": "s56",
+        "utc_offset_second": "s57",
+        "id": "FLOOD00"
+      },
+      "FLOOD01": {
+        "daily": {},
+        "daily_unit": {},
+        "generationtime_m": 162,
+        "latitude": 163,
+        "longitude": 164,
+        "timezone": "sa5",
+        "timezone_abbreviation": "sa6",
+        "utc_offset_second": "sa7",
+        "id": "FLOOD01"
+      },
+      "FLOOD02": {
+        "daily": {},
+        "daily_unit": {},
+        "generationtime_m": 242,
+        "latitude": 243,
+        "longitude": 244,
+        "timezone": "sf5",
+        "timezone_abbreviation": "sf6",
+        "utc_offset_second": "sf7",
+        "id": "FLOOD02"
+      }
+    }
+  },
+  "new": {
+    "flood": {
+      "flood_ref01": {
+        "daily": {},
+        "daily_unit": {},
+        "generationtime_m": 322,
+        "latitude": 323,
+        "longitude": 324,
+        "timezone": "s145",
+        "timezone_abbreviation": "s146",
+        "utc_offset_second": "s147"
+      }
+    }
+  }
+}

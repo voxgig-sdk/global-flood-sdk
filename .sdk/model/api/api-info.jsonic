@@ -1,0 +1,32 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Open-Meteo"
+        url: "https://open-meteo.com"
+      }
+      description: "Simulated river discharge at 5 km resolution from 1984 up to 7 months forecast. This API uses reanalysis and forecast data from the Global Flood Awareness System (GloFAS)."
+      license: {
+        name: "Attribution 4.0 International (CC BY 4.0)"
+        url: "https://open-meteo.com/en/terms"
+      }
+      servers: [
+        {
+          description: "Global Flood API"
+          url: "https://flood-api.open-meteo.com"
+        }
+        {
+          description: "Commercial API with reserved resources"
+          url: "https://customer-flood-api.open-meteo.com"
+        }
+      ]
+      title: "Global Flood API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
