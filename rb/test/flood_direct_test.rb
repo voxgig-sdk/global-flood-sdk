@@ -68,14 +68,12 @@ def flood_direct_setup(mockres)
   env = Runner.env_override({
     "GLOBALFLOOD_TEST_FLOOD_ENTID" => {},
     "GLOBALFLOOD_TEST_LIVE" => "FALSE",
-    "GLOBALFLOOD_APIKEY" => "NONE",
   })
 
   live = env["GLOBALFLOOD_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["GLOBALFLOOD_APIKEY"],
     }
     client = GlobalFloodSDK.new(merged_opts)
     return {

@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'GLOBALFLOOD_TEST_FLOOD_ENTID': {},
     'GLOBALFLOOD_TEST_LIVE': 'FALSE',
-    'GLOBALFLOOD_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.GLOBALFLOOD_TEST_LIVE
 
   if (live) {
     const client = new GlobalFloodSDK({
-      apikey: env.GLOBALFLOOD_APIKEY,
     })
 
     let idmap: any = env['GLOBALFLOOD_TEST_FLOOD_ENTID']

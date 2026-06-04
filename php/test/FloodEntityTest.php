@@ -85,7 +85,6 @@ function flood_basic_setup($extra)
         "GLOBALFLOOD_TEST_FLOOD_ENTID" => $idmap,
         "GLOBALFLOOD_TEST_LIVE" => "FALSE",
         "GLOBALFLOOD_TEST_EXPLAIN" => "FALSE",
-        "GLOBALFLOOD_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function flood_basic_setup($extra)
     if ($env["GLOBALFLOOD_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GLOBALFLOOD_APIKEY"],
             ],
             $extra ?? [],
         ]);

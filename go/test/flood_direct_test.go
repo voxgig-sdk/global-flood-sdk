@@ -106,14 +106,12 @@ func floodDirectSetup(mockres any) *floodDirectSetupResult {
 	env := envOverride(map[string]any{
 		"GLOBALFLOOD_TEST_FLOOD_ENTID": map[string]any{},
 		"GLOBALFLOOD_TEST_LIVE":    "FALSE",
-		"GLOBALFLOOD_APIKEY":       "NONE",
 	})
 
 	live := env["GLOBALFLOOD_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["GLOBALFLOOD_APIKEY"],
 		}
 		client := sdk.NewGlobalFloodSDK(mergedOpts)
 

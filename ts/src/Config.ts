@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://flood-api.open-meteo.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
