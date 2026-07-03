@@ -1,22 +1,8 @@
 # GlobalFlood SDK
 
-Query simulated river discharge at ~5 km resolution from 1984 to a 7-month forecast, powered by GloFAS
+Global Flood API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Global Flood API
-
-The Global Flood API is a free public service from [Open-Meteo](https://open-meteo.com) that exposes simulated daily river discharge derived from the [Global Flood Awareness System (GloFAS)](https://global-flood.emergency.copernicus.eu/), part of the EU's Copernicus Emergency Management Service. Historical reanalysis is available from 1 January 1984, and the same endpoint returns forecasts of up to about seven months ahead.
-
-What you get from the API:
-
-- Daily `river_discharge` in m³/s for any latitude/longitude on the global grid.
-- Ensemble statistics: `river_discharge_mean`, `_median`, `_max`, `_min`, and the `_p25` / `_p75` percentiles.
-- Access to all 50 ensemble members for forecast runs.
-- Choice of GloFAS v4 (~5 km, 0.05°) or GloFAS v3 (~11 km, 0.1°) models.
-- Tunable `past_days`, `forecast_days` (0–210), `timeformat` (ISO8601 or UNIX), and `cell_selection` (nearest / land / sea).
-
-Operational notes: requests go to `https://flood-api.open-meteo.com/v1/flood`. The free tier requires no API key for non-commercial use; commercial traffic is served from a `customer-` host with a key. Because the grid resolution is ~5 km, the nearest river cell may not be the intended one — nudging coordinates by ~0.1° can help.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install global-flood-sdk
 luarocks install global-flood-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { GlobalFloodSDK } from 'global-flood'
 
-const client = new GlobalFloodSDK({})
+const client = new GlobalFloodSDK({
+  apikey: process.env.GLOBAL-FLOOD_APIKEY,
+})
 
+// Load flood data
+const flood = await client.Flood().load({})
+console.log(flood.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Flood** | River-discharge time series for a given coordinate, returned by `GET /v1/flood` with parameters such as `latitude`, `longitude`, and `daily=river_discharge`. | `/v1/flood` |
+| **Flood** |  | `/v1/flood` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from globalflood_sdk import GlobalFloodSDK
 
-client = GlobalFloodSDK({})
+client = GlobalFloodSDK({
+    "apikey": os.environ.get("GLOBAL-FLOOD_APIKEY"),
+})
 
 
 # Load a specific flood
-flood, err = client.Flood(None).load(
-    {"id": "example_id"}, None
-)
+flood, err = client.Flood().load({"id": "example_id"})
+print(flood)
 ```
 
 ### PHP
@@ -127,13 +119,14 @@ flood, err = client.Flood(None).load(
 <?php
 require_once 'globalflood_sdk.php';
 
-$client = new GlobalFloodSDK([]);
+$client = new GlobalFloodSDK([
+    "apikey" => getenv("GLOBAL-FLOOD_APIKEY"),
+]);
 
 
 // Load a specific flood
-[$flood, $err] = $client->Flood(null)->load(
-    ["id" => "example_id"], null
-);
+[$flood, $err] = $client->Flood()->load(["id" => "example_id"]);
+print_r($flood);
 ```
 
 ### Golang
@@ -141,8 +134,13 @@ $client = new GlobalFloodSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/global-flood-sdk/go"
 
-client := sdk.NewGlobalFloodSDK(map[string]any{})
+client := sdk.NewGlobalFloodSDK(map[string]any{
+    "apikey": os.Getenv("GLOBAL-FLOOD_APIKEY"),
+})
 
+// Load flood data
+flood, err := client.Flood(nil).Load(map[string]any{}, nil)
+fmt.Println(flood)
 ```
 
 ### Ruby
@@ -150,13 +148,14 @@ client := sdk.NewGlobalFloodSDK(map[string]any{})
 ```ruby
 require_relative "GlobalFlood_sdk"
 
-client = GlobalFloodSDK.new({})
+client = GlobalFloodSDK.new({
+  "apikey" => ENV["GLOBAL-FLOOD_APIKEY"],
+})
 
 
 # Load a specific flood
-flood, err = client.Flood(nil).load(
-  { "id" => "example_id" }, nil
-)
+flood, err = client.Flood().load({ "id" => "example_id" })
+puts flood
 ```
 
 ### Lua
@@ -164,13 +163,14 @@ flood, err = client.Flood(nil).load(
 ```lua
 local sdk = require("global-flood_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("GLOBAL-FLOOD_APIKEY"),
+})
 
 
 -- Load a specific flood
-local flood, err = client:Flood(nil):load(
-  { id = "example_id" }, nil
-)
+local flood, err = client:Flood():load({ id = "example_id" })
+print(flood)
 ```
 
 ## Unit testing in offline mode
@@ -189,25 +189,21 @@ const result = await client.Flood().load({ id: 'test01' })
 ### Python
 
 ```python
-client = GlobalFloodSDK.test(None, None)
-result, err = client.Flood(None).load(
-    {"id": "test01"}, None
-)
+client = GlobalFloodSDK.test()
+result, err = client.Flood().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = GlobalFloodSDK::test(null, null);
-[$result, $err] = $client->Flood(null)->load(
-    ["id" => "test01"], null
-);
+$client = GlobalFloodSDK::test();
+[$result, $err] = $client->Flood()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Flood(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -216,19 +212,15 @@ result, err := client.Flood(nil).Load(
 ### Ruby
 
 ```ruby
-client = GlobalFloodSDK.test(nil, nil)
-result, err = client.Flood(nil).load(
-  { "id" => "test01" }, nil
-)
+client = GlobalFloodSDK.test
+result, err = client.Flood().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Flood(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Flood():load({ id = "test01" })
 ```
 
 ## How it works
@@ -332,14 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Global Flood API
-
-- Upstream: [https://open-meteo.com/en/docs/flood-api](https://open-meteo.com/en/docs/flood-api)
-
-- Data is provided under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) licence.
-- Attribution to [Open-Meteo](https://open-meteo.com) and the underlying [GloFAS](https://global-flood.emergency.copernicus.eu/) (Copernicus Emergency Management Service) is required when redistributing.
-- The free tier is intended for non-commercial use; commercial usage typically requires an API key (URL prefix `customer-`).
 
 ---
 

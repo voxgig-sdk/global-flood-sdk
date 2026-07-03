@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'GLOBAL_FLOOD_TEST_FLOOD_ENTID': idmap,
     'GLOBAL_FLOOD_TEST_LIVE': 'FALSE',
     'GLOBAL_FLOOD_TEST_EXPLAIN': 'FALSE',
+    'GLOBAL_FLOOD_APIKEY': 'NONE',
   })
 
   idmap = env['GLOBAL_FLOOD_TEST_FLOOD_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new GlobalFloodSDK(merge([
       {
+        apikey: env.GLOBAL_FLOOD_APIKEY,
       },
       extra
     ]))

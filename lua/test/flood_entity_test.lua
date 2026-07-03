@@ -91,6 +91,7 @@ function flood_basic_setup(extra)
     ["GLOBALFLOOD_TEST_FLOOD_ENTID"] = idmap,
     ["GLOBALFLOOD_TEST_LIVE"] = "FALSE",
     ["GLOBALFLOOD_TEST_EXPLAIN"] = "FALSE",
+    ["GLOBALFLOOD_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function flood_basic_setup(extra)
   if env["GLOBALFLOOD_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["GLOBALFLOOD_APIKEY"],
       },
       extra or {},
     })
