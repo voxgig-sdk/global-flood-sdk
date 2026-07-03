@@ -10,13 +10,13 @@ The Ruby SDK for the GlobalFlood API — an entity-oriented client using idiomat
 
 ## Install
 ```bash
-gem install global-flood-sdk
+gem install voxgig-sdk-global-flood
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "global-flood-sdk"
+gem "voxgig-sdk-global-flood"
 ```
 
 Then run:

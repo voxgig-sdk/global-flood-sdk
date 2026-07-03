@@ -8,12 +8,14 @@ source = {
   dir = "global-flood-sdk/lua"
 }
 description = {
-  summary = "GlobalFlood SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Global Flood public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/global-flood-sdk",
+  issues_url = "https://github.com/voxgig-sdk/global-flood-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "global-flood" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

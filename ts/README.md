@@ -10,7 +10,7 @@ The TypeScript SDK for the GlobalFlood API — a type-safe, entity-oriented clie
 
 ## Install
 ```bash
-npm install global-flood
+npm install @voxgig-sdk/global-flood
 ```
 ## Tutorial: your first API call
 

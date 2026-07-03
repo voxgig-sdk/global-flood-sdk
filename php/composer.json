@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/global-flood",
-  "description": "GlobalFlood SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Global Flood public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "global-flood"],
+  "homepage": "https://github.com/voxgig-sdk/global-flood-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/global-flood-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/global-flood-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

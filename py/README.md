@@ -10,7 +10,7 @@ The Python SDK for the GlobalFlood API — an entity-oriented client following P
 
 ## Install
 ```bash
-pip install global-flood-sdk
+pip install voxgig-sdk-global-flood
 ```
 
 Or install from source:
