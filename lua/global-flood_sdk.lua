@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:flood():list() / client:flood():load({ id = ... })
-function GlobalFloodSDK:flood(data)
+-- Idiomatic facade: client:Flood():list() / client:Flood():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GlobalFloodSDK:Flood(data)
   local EntityMod = require("entity.flood_entity")
   if data == nil then
     if self._flood == nil then
@@ -253,12 +254,6 @@ function GlobalFloodSDK:flood(data)
     end
     return self._flood
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:flood() instead.
-function GlobalFloodSDK:Flood(data)
-  local EntityMod = require("entity.flood_entity")
   return EntityMod.new(self, data)
 end
 

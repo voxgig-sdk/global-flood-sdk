@@ -220,25 +220,15 @@ class GlobalFloodSDK:
         }
 
 
-    @property
-    def flood(self):
-        """Idiomatic facade: client.flood.list() / client.flood.load({"id": ...})."""
-        from entity.flood_entity import FloodEntity
-        cached = getattr(self, "_flood", None)
-        if cached is None:
-            cached = FloodEntity(self, None)
-            self._flood = cached
-        return cached
-
-    def Flood(self, data=None):
-        # Deprecated: use client.flood instead.
+    def Flood(self, data=None) -> "FloodEntity":
+        """Entity factory: client.Flood().list({}) / client.Flood().load({"id": ...})."""
         from entity.flood_entity import FloodEntity
         return FloodEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "GlobalFloodSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class GlobalFloodSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.flood_entity import FloodEntity

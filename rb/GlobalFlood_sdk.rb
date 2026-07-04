@@ -208,13 +208,7 @@ class GlobalFloodSDK
   end
 
 
-  # Idiomatic facade: client.flood.list / client.flood.load({ "id" => ... })
-  def flood
-    require_relative 'entity/flood_entity'
-    @flood ||= FloodEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.flood instead.
+  # Canonical facade: client.Flood.list / client.Flood.load({ "id" => ... })
   def Flood(data = nil)
     require_relative 'entity/flood_entity'
     FloodEntity.new(self, data)

@@ -34,8 +34,9 @@ client = GlobalFloodSDK.new({
 
 ```ruby
 begin
-  result = client.flood.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Flood record (raises on error).
+  flood = client.Flood.load({ "id" => "example_id" })
+  puts flood
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = GlobalFloodSDK.test
+client = GlobalFloodSDK.test({
+  "entity" => { "flood" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.flood.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+flood = client.Flood.load({ "id" => "test01" })
+puts flood
 ```
 
 ### Use a custom fetch function
@@ -229,7 +234,7 @@ API path: `/v1/flood`
 
 ### Flood
 
-Create an instance: `const flood = client.flood`
+Create an instance: `flood = client.Flood`
 
 #### Operations
 
@@ -252,8 +257,9 @@ Create an instance: `const flood = client.flood`
 
 #### Example: Load
 
-```ts
-const flood = await client.flood.load({ id: 'flood_id' })
+```ruby
+# load returns the bare Flood record (raises on error).
+flood = client.Flood.load({ "id" => "flood_id" })
 ```
 
 
@@ -328,7 +334,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-flood = client.flood
+flood = client.Flood
 flood.load({ "id" => "example_id" })
 
 # flood.data_get now returns the loaded flood data

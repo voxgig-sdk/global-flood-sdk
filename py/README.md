@@ -36,10 +36,12 @@ client = GlobalFloodSDK({
 
 ### 3. Load a flood
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.flood.load({"id": "example_id"})
-    print(result)
+    flood = client.Flood().load({"id": "example_id"})
+    print(flood)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GlobalFloodSDK.test()
 
-result = client.flood.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+flood = client.Flood().load({"id": "test01"})
+# flood contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -230,7 +233,7 @@ API path: `/v1/flood`
 
 ### Flood
 
-Create an instance: `const flood = client.flood`
+Create an instance: `flood = client.Flood()`
 
 #### Operations
 
@@ -253,8 +256,8 @@ Create an instance: `const flood = client.flood`
 
 #### Example: Load
 
-```ts
-const flood = await client.flood.load({ id: 'flood_id' })
+```python
+flood = client.Flood().load({"id": "flood_id"})
 ```
 
 
@@ -328,7 +331,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-flood = client.flood
+flood = client.Flood()
 flood.load({"id": "example_id"})
 
 # flood.data_get() now returns the loaded flood data

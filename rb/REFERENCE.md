@@ -87,7 +87,7 @@ same parameters as `direct()`. Raises on error.
 ## FloodEntity
 
 ```ruby
-flood = client.flood
+flood = client.Flood
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ flood = client.flood
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.flood.load({ "id" => "flood_id" })
+result = client.Flood.load({ "id" => "flood_id" })
 ```
 
 ### Common Methods

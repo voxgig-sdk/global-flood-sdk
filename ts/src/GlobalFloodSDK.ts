@@ -204,14 +204,7 @@ class GlobalFloodSDK {
 
 
 
-  _flood?: FloodEntity
-
-  // Idiomatic facade: `client.flood.list()` / `client.flood.load({ id })`.
-  get flood(): FloodEntity {
-    return (this._flood ??= new FloodEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.flood` instead. */
+  // Entity access: `client.Flood().list()` / `client.Flood().load({ id })`.
   Flood(data?: any) {
     const self = this
     return new FloodEntity(self,data)

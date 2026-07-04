@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## FloodEntity
 
 ```python
-flood = client.flood
+flood = client.Flood()
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ flood = client.flood
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.flood.load({"id": "flood_id"})
+result = client.Flood().load({"id": "flood_id"})
 ```
 
 ### Common Methods

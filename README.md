@@ -28,9 +28,9 @@ const client = new GlobalFloodSDK({
   apikey: process.env.GLOBAL_FLOOD_APIKEY,
 })
 
-// Load flood data
-const flood = await client.flood.load({})
-console.log(flood.data)
+// Load flood data (returns a Flood)
+const flood = await client.Flood().load()
+console.log(flood)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,8 +89,8 @@ client = GlobalFloodSDK({
 })
 
 
-# Load a specific flood
-flood = client.flood.load({"id": "example_id"})
+# Load a specific flood (returns the record, raises on error)
+flood = client.Flood().load({"id": "example_id"})
 print(flood)
 ```
 
@@ -105,8 +105,8 @@ $client = new GlobalFloodSDK([
 ]);
 
 
-// Load a specific flood
-$flood = $client->flood()->load(["id" => "example_id"]);
+// Load a specific flood (returns the bare record; throws on error)
+$flood = $client->Flood()->load(["id" => "example_id"]);
 print_r($flood);
 ```
 
@@ -134,8 +134,8 @@ client = GlobalFloodSDK.new({
 })
 
 
-# Load a specific flood
-flood = client.flood.load({ "id" => "example_id" })
+# Load a specific flood (returns the bare record; raises on error)
+flood = client.Flood.load({ "id" => "example_id" })
 puts flood
 ```
 
@@ -150,7 +150,7 @@ local client = sdk.new({
 
 
 -- Load a specific flood
-local flood, err = client:flood():load({ id = "example_id" })
+local flood, err = client:Flood():load({ id = "example_id" })
 print(flood)
 ```
 
@@ -163,22 +163,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = GlobalFloodSDK.test()
-const result = await client.flood.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const flood = await client.Flood().load({ id: 'test01' })
+// flood is a bare Flood populated with mock data
+console.log(flood)
 ```
 
 ### Python
 
 ```python
 client = GlobalFloodSDK.test()
-result = client.flood.load({"id": "test01"})
+flood = client.Flood().load({"id": "test01"})
+print(flood)
 ```
 
 ### PHP
 
 ```php
-$client = GlobalFloodSDK::test();
-$result = $client->flood()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = GlobalFloodSDK::test([
+    "entity" => ["flood" => ["test01" => ["id" => "test01"]]],
+]);
+$flood = $client->Flood()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +198,18 @@ result, err := client.Flood(nil).Load(
 ### Ruby
 
 ```ruby
-client = GlobalFloodSDK.test
-result = client.flood.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = GlobalFloodSDK.test({
+  "entity" => { "flood" => { "test01" => { "id" => "test01" } } },
+})
+flood = client.Flood.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:flood():load({ id = "test01" })
+local result, err = client:Flood():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +257,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

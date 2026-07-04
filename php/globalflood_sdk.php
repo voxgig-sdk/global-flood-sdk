@@ -233,10 +233,10 @@ class GlobalFloodSDK
 
     private $_flood = null;
 
-    // Idiomatic facade: $client->flood()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Flood() (PHP method
-    // names are case-insensitive).
-    public function flood($data = null)
+    // Canonical facade: $client->Flood()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->flood()
+    // resolves here too.
+    public function Flood($data = null)
     {
         require_once __DIR__ . '/entity/flood_entity.php';
         if ($data === null) {

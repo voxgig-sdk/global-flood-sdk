@@ -35,9 +35,10 @@ $client = new GlobalFloodSDK([
 
 ```php
 try {
-    $result = $client->flood()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Flood record (throws on error).
+    $flood = $client->Flood()->load(["id" => "example_id"]);
+    print_r($flood);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = GlobalFloodSDK::test();
+$client = GlobalFloodSDK::test([
+    "entity" => ["flood" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->flood()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$flood = $client->Flood()->load(["id" => "test01"]);
+print_r($flood);
 ```
 
 ### Use a custom fetch function
@@ -234,7 +239,7 @@ API path: `/v1/flood`
 
 ### Flood
 
-Create an instance: `const flood = client.flood`
+Create an instance: `$flood = $client->Flood();`
 
 #### Operations
 
@@ -257,8 +262,9 @@ Create an instance: `const flood = client.flood`
 
 #### Example: Load
 
-```ts
-const flood = await client.flood.load({ id: 'flood_id' })
+```php
+// load() returns the bare Flood record (throws on error).
+$flood = $client->Flood()->load(["id" => "flood_id"]);
 ```
 
 
@@ -333,7 +339,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$flood = $client->flood();
+$flood = $client->Flood();
 $flood->load(["id" => "example_id"]);
 
 // $flood->dataGet() now returns the loaded flood data

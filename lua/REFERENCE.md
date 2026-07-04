@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## FloodEntity
 
 ```lua
-local flood = client:flood(nil)
+local flood = client:Flood(nil)
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ local flood = client:flood(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:flood():load({ id = "flood_id" })
+local result, err = client:Flood():load({ id = "flood_id" })
 ```
 
 ### Common Methods
