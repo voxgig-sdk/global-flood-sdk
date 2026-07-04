@@ -245,6 +245,9 @@ func (sdk *GlobalFloodSDK) Direct(fetchargs map[string]any) (map[string]any, err
 }
 
 
+// Flood returns a Flood entity bound to this client.
+// Idiomatic usage: client.Flood(nil).List(nil, nil) or
+// client.Flood(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GlobalFloodSDK) Flood(data map[string]any) GlobalFloodEntity {
 	return NewFloodEntityFunc(sdk, data)
 }

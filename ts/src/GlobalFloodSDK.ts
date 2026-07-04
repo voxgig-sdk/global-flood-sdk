@@ -2,6 +2,8 @@
 
 import { FloodEntity } from './entity/FloodEntity'
 
+export type * from './GlobalFloodTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class GlobalFloodSDK {
 
 
 
+  _flood?: FloodEntity
+
+  // Idiomatic facade: `client.flood.list()` / `client.flood.load({ id })`.
+  get flood(): FloodEntity {
+    return (this._flood ??= new FloodEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.flood` instead. */
   Flood(data?: any) {
     const self = this
     return new FloodEntity(self,data)

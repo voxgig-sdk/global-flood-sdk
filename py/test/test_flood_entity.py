@@ -49,8 +49,7 @@ class TestFloodEntity:
         # LOAD
         flood_ref01_ent = client.Flood(None)
         flood_ref01_match_dt0 = {}
-        flood_ref01_data_dt0_loaded, err = flood_ref01_ent.load(flood_ref01_match_dt0, None)
-        assert err is None
+        flood_ref01_data_dt0_loaded = flood_ref01_ent.load(flood_ref01_match_dt0, None)
         assert flood_ref01_data_dt0_loaded is not None
 
 

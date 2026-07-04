@@ -9,9 +9,12 @@ The TypeScript SDK for the GlobalFlood API — a type-safe, entity-oriented clie
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/global-flood
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/global-flood-sdk/releases](https://github.com/voxgig-sdk/global-flood-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { GlobalFloodSDK } from 'global-flood'
+import { GlobalFloodSDK } from '@voxgig-sdk/global-flood'
 
 const client = new GlobalFloodSDK({
-  apikey: process.env.GLOBAL-FLOOD_APIKEY,
+  apikey: process.env.GLOBAL_FLOOD_APIKEY,
 })
 ```
 
 ### 3. Load a flood
 
 ```ts
-const result = await client.Flood().load({ id: 'example_id' })
+const result = await client.flood.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GlobalFloodSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.flood.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.flood
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new GlobalFloodSDK({
 Create a `.env.local` file at the project root:
 
 ```
-GLOBAL-FLOOD_TEST_LIVE=TRUE
-GLOBAL-FLOOD_APIKEY=<your-key>
+GLOBAL_FLOOD_TEST_LIVE=TRUE
+GLOBAL_FLOOD_APIKEY=<your-key>
 ```
 
 Then run:
@@ -273,7 +276,7 @@ API path: `/v1/flood`
 
 ### Flood
 
-Create an instance: `const flood = client.Flood()`
+Create an instance: `const flood = client.flood`
 
 #### Operations
 
@@ -297,7 +300,7 @@ Create an instance: `const flood = client.Flood()`
 #### Example: Load
 
 ```ts
-const flood = await client.Flood().load({ id: 'flood_id' })
+const flood = await client.flood.load({ id: 'flood_id' })
 ```
 
 
@@ -358,7 +361,7 @@ global-flood/
 Import the SDK from the package root:
 
 ```ts
-import { GlobalFloodSDK } from 'global-flood'
+import { GlobalFloodSDK } from '@voxgig-sdk/global-flood'
 ```
 
 ### Entity state
@@ -368,11 +371,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const flood = client.flood
+await flood.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// flood.data() now returns the loaded flood data
+// flood.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

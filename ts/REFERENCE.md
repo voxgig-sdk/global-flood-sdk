@@ -110,7 +110,7 @@ Alias for `GlobalFloodSDK.test()`.
 ## FloodEntity
 
 ```ts
-const flood = client.Flood()
+const flood = client.flood
 ```
 
 ### Fields
@@ -133,7 +133,7 @@ const flood = client.Flood()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Flood().load({ id: 'flood_id' })
+const result = await client.flood.load({ id: 'flood_id' })
 ```
 
 ### Common Methods

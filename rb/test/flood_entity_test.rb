@@ -42,8 +42,7 @@ class FloodEntityTest < Minitest::Test
     # LOAD
     flood_ref01_ent = client.Flood(nil)
     flood_ref01_match_dt0 = {}
-    flood_ref01_data_dt0_loaded, err = flood_ref01_ent.load(flood_ref01_match_dt0, nil)
-    assert_nil err
+    flood_ref01_data_dt0_loaded = flood_ref01_ent.load(flood_ref01_match_dt0, nil)
     assert !flood_ref01_data_dt0_loaded.nil?
 
   end

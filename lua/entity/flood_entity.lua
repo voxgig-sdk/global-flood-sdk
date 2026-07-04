@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch FloodLoadMatch
+---@param ctrl? table
+---@return Flood
+---@return string? err
 function FloodEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -9,12 +9,9 @@ The Lua SDK for the GlobalFlood API — an entity-oriented client using Lua conv
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-global-flood
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/global-flood-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("global-flood_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("GLOBAL-FLOOD_APIKEY"),
+  apikey = os.getenv("GLOBAL_FLOOD_APIKEY"),
 })
 ```
 
 ### 3. Load a flood
 
 ```lua
-local result, err = client:Flood():load({ id = "example_id" })
+local result, err = client:flood():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:GlobalFlood():load({ id = "test01" })
+local result, err = client:flood():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-GLOBAL-FLOOD_TEST_LIVE=TRUE
-GLOBAL-FLOOD_APIKEY=<your-key>
+GLOBAL_FLOOD_TEST_LIVE=TRUE
+GLOBAL_FLOOD_APIKEY=<your-key>
 ```
 
 Then run:
@@ -228,7 +225,7 @@ API path: `/v1/flood`
 
 ### Flood
 
-Create an instance: `const flood = client.Flood()`
+Create an instance: `const flood = client.flood`
 
 #### Operations
 
@@ -252,7 +249,7 @@ Create an instance: `const flood = client.Flood()`
 #### Example: Load
 
 ```ts
-const flood = await client.Flood().load({ id: 'flood_id' })
+const flood = await client.flood.load({ id: 'flood_id' })
 ```
 
 
@@ -327,11 +324,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local flood = client:flood()
+flood:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- flood:data_get() now returns the loaded flood data
+-- flood:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

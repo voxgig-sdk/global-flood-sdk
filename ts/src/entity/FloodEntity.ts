@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Flood,
+  FloodLoadMatch,
+} from '../GlobalFloodTypes'
 
 // TODO: needs Entity superclass
-class FloodEntity extends GlobalFloodEntityBase {
+class FloodEntity extends GlobalFloodEntityBase<Flood> {
 
   constructor(client: GlobalFloodSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class FloodEntity extends GlobalFloodEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: FloodLoadMatch, ctrl?: Control): Promise<Flood> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class FloodEntity extends GlobalFloodEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Flood> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

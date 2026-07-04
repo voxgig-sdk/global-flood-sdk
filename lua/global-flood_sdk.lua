@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:flood():list() / client:flood():load({ id = ... })
+function GlobalFloodSDK:flood(data)
+  local EntityMod = require("entity.flood_entity")
+  if data == nil then
+    if self._flood == nil then
+      self._flood = EntityMod.new(self, nil)
+    end
+    return self._flood
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:flood() instead.
 function GlobalFloodSDK:Flood(data)
   local EntityMod = require("entity.flood_entity")
   return EntityMod.new(self, data)

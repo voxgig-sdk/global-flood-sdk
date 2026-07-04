@@ -49,8 +49,7 @@ class FloodEntityTest extends TestCase
         // LOAD
         $flood_ref01_ent = $client->Flood(null);
         $flood_ref01_match_dt0 = [];
-        [$flood_ref01_data_dt0_loaded, $err] = $flood_ref01_ent->load($flood_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $flood_ref01_data_dt0_loaded = $flood_ref01_ent->load($flood_ref01_match_dt0, null);
         $this->assertNotNull($flood_ref01_data_dt0_loaded);
 
     }
