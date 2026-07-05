@@ -17,6 +17,14 @@
 ---@field utc_offset_second? number
 
 ---@class FloodLoadMatch
+---@field daily? table
+---@field daily_unit? table
+---@field generationtime_m? number
+---@field latitude? number
+---@field longitude? number
+---@field timezone? string
+---@field timezone_abbreviation? string
+---@field utc_offset_second? number
 
 local M = {}
 

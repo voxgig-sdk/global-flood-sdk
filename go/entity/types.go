@@ -20,8 +20,7 @@ type Flood struct {
 	UtcOffsetSecond *int `json:"utc_offset_second,omitempty"`
 }
 
-// FloodLoadMatch mirrors the flood fields as an all-optional match
-// filter (Go analog of Partial<Flood>).
+// FloodLoadMatch is the typed request payload for Flood.LoadTyped.
 type FloodLoadMatch struct {
 	Daily *map[string]any `json:"daily,omitempty"`
 	DailyUnit *map[string]any `json:"daily_unit,omitempty"`

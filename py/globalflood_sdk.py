@@ -221,7 +221,7 @@ class GlobalFloodSDK:
 
 
     def Flood(self, data=None) -> "FloodEntity":
-        """Entity factory: client.Flood().list({}) / client.Flood().load({"id": ...})."""
+        """Entity factory: client.Flood().list() / client.Flood().load({"id": ...})."""
         from entity.flood_entity import FloodEntity
         return FloodEntity(self, data)
 

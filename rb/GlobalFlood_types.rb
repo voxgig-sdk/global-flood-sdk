@@ -45,7 +45,7 @@ Flood = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Flood#load (any subset of Flood fields).
+# Request payload for Flood#load.
 #
 # @!attribute [rw] daily
 #   @return [Hash, nil]

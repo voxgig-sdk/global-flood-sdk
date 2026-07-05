@@ -25,7 +25,7 @@ class Flood
     public ?int $utc_offset_second = null;
 }
 
-/** Match filter for Flood#load (any subset of Flood fields). */
+/** Request payload for Flood#load. */
 class FloodLoadMatch
 {
     public ?array $daily = null;

@@ -117,14 +117,14 @@ const flood = client.Flood()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | ``$OBJECT`` | No |  |
-| `daily_unit` | ``$OBJECT`` | No |  |
-| `generationtime_m` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
-| `timezone_abbreviation` | ``$STRING`` | No |  |
-| `utc_offset_second` | ``$INTEGER`` | No |  |
+| `daily` | `Record<string, any>` | No |  |
+| `daily_unit` | `Record<string, any>` | No |  |
+| `generationtime_m` | `number` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `timezone` | `string` | No |  |
+| `timezone_abbreviation` | `string` | No |  |
+| `utc_offset_second` | `number` | No |  |
 
 ### Operations
 
@@ -133,7 +133,7 @@ const flood = client.Flood()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Flood().load({ id: 'flood_id' })
+const result = await client.Flood().load()
 ```
 
 ### Common Methods

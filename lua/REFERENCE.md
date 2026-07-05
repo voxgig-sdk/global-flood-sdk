@@ -91,14 +91,14 @@ local flood = client:Flood(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | ``$OBJECT`` | No |  |
-| `daily_unit` | ``$OBJECT`` | No |  |
-| `generationtime_m` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
-| `timezone_abbreviation` | ``$STRING`` | No |  |
-| `utc_offset_second` | ``$INTEGER`` | No |  |
+| `daily` | `table` | No |  |
+| `daily_unit` | `table` | No |  |
+| `generationtime_m` | `number` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `timezone` | `string` | No |  |
+| `timezone_abbreviation` | `string` | No |  |
+| `utc_offset_second` | `number` | No |  |
 
 ### Operations
 
@@ -107,7 +107,7 @@ local flood = client:Flood(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Flood():load({ id = "flood_id" })
+local result, err = client:Flood():load()
 ```
 
 ### Common Methods

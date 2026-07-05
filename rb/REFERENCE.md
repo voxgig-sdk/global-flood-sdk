@@ -8,7 +8,7 @@ Complete API reference for the GlobalFlood Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'global-flood_sdk'
+require_relative 'GlobalFlood_sdk'
 
 client = GlobalFloodSDK.new(options)
 ```
@@ -94,14 +94,14 @@ flood = client.Flood
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | ``$OBJECT`` | No |  |
-| `daily_unit` | ``$OBJECT`` | No |  |
-| `generationtime_m` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
-| `timezone_abbreviation` | ``$STRING`` | No |  |
-| `utc_offset_second` | ``$INTEGER`` | No |  |
+| `daily` | `Hash` | No |  |
+| `daily_unit` | `Hash` | No |  |
+| `generationtime_m` | `Float` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `timezone` | `String` | No |  |
+| `timezone_abbreviation` | `String` | No |  |
+| `utc_offset_second` | `Integer` | No |  |
 
 ### Operations
 
@@ -110,7 +110,7 @@ flood = client.Flood
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Flood.load({ "id" => "flood_id" })
+result = client.Flood.load()
 ```
 
 ### Common Methods

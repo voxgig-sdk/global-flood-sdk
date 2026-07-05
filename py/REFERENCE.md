@@ -8,7 +8,7 @@ Complete API reference for the GlobalFlood Python SDK.
 ### Constructor
 
 ```python
-from global-flood_sdk import GlobalFloodSDK
+from globalflood_sdk import GlobalFloodSDK
 
 client = GlobalFloodSDK(options)
 ```
@@ -88,14 +88,14 @@ flood = client.Flood()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | ``$OBJECT`` | No |  |
-| `daily_unit` | ``$OBJECT`` | No |  |
-| `generationtime_m` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
-| `timezone_abbreviation` | ``$STRING`` | No |  |
-| `utc_offset_second` | ``$INTEGER`` | No |  |
+| `daily` | `dict` | No |  |
+| `daily_unit` | `dict` | No |  |
+| `generationtime_m` | `float` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `timezone` | `str` | No |  |
+| `timezone_abbreviation` | `str` | No |  |
+| `utc_offset_second` | `int` | No |  |
 
 ### Operations
 
@@ -104,7 +104,7 @@ flood = client.Flood()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Flood().load({"id": "flood_id"})
+result = client.Flood().load()
 ```
 
 ### Common Methods

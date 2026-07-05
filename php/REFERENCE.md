@@ -8,7 +8,7 @@ Complete API reference for the GlobalFlood PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/global-flood_sdk.php';
+require_once __DIR__ . '/globalflood_sdk.php';
 
 $client = new GlobalFloodSDK($options);
 ```
@@ -46,11 +46,11 @@ $client = GlobalFloodSDK::test();
 
 Create a new `FloodEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): GlobalFloodUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,14 +93,14 @@ $flood = $client->Flood();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | ``$OBJECT`` | No |  |
-| `daily_unit` | ``$OBJECT`` | No |  |
-| `generationtime_m` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
-| `timezone_abbreviation` | ``$STRING`` | No |  |
-| `utc_offset_second` | ``$INTEGER`` | No |  |
+| `daily` | `array` | No |  |
+| `daily_unit` | `array` | No |  |
+| `generationtime_m` | `float` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `timezone` | `string` | No |  |
+| `timezone_abbreviation` | `string` | No |  |
+| `utc_offset_second` | `int` | No |  |
 
 ### Operations
 
@@ -109,24 +109,24 @@ $flood = $client->Flood();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Flood()->load(["id" => "flood_id"]);
+$result = $client->Flood()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -135,7 +135,7 @@ Set the entity match criteria.
 Create a new `FloodEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

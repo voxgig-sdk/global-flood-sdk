@@ -98,14 +98,14 @@ flood := client.Flood(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | ``$OBJECT`` | No |  |
-| `daily_unit` | ``$OBJECT`` | No |  |
-| `generationtime_m` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
-| `timezone_abbreviation` | ``$STRING`` | No |  |
-| `utc_offset_second` | ``$INTEGER`` | No |  |
+| `daily` | `map[string]any` | No |  |
+| `daily_unit` | `map[string]any` | No |  |
+| `generationtime_m` | `float64` | No |  |
+| `latitude` | `float64` | No |  |
+| `longitude` | `float64` | No |  |
+| `timezone` | `string` | No |  |
+| `timezone_abbreviation` | `string` | No |  |
+| `utc_offset_second` | `int` | No |  |
 
 ### Operations
 
@@ -114,7 +114,7 @@ flood := client.Flood(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Flood(nil).Load(map[string]any{"id": "flood_id"}, nil)
+result, err := client.Flood(nil).Load(nil, nil)
 ```
 
 ### Common Methods
