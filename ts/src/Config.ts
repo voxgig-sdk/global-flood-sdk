@@ -39,7 +39,7 @@ class Config {
     base: 'https://flood-api.open-meteo.com',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

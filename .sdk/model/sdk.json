@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -366,6 +363,14 @@
           "name": "Attribution 4.0 International (CC BY 4.0)",
           "url": "https://open-meteo.com/en/terms"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "query",
+          "name": "apikey",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Global Flood API",
@@ -376,8 +381,10 @@
             "url": "https://customer-flood-api.open-meteo.com"
           }
         ],
+        "summary": "Simulated river discharge at 5 km resolution from 1984 up to 7 months forecast.",
         "title": "Global Flood API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://open-meteo.com/en/docs/flood-api"
       },
       "option": {},
       "target": {
@@ -430,6 +437,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -480,6 +490,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

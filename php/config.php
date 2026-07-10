@@ -21,7 +21,7 @@ class GlobalFloodConfig
             "options" => [
                 "base" => "https://flood-api.open-meteo.com",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',
