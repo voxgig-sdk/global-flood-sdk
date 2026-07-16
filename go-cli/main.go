@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewGlobalFloodSDK(nil)
+	// Configure from the environment: GLOBAL_FLOOD_APIKEY carries the API key and
+	// GLOBAL_FLOOD_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("GLOBAL_FLOOD_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("GLOBAL_FLOOD_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewGlobalFloodSDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {
