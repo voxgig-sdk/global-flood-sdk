@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- GlobalFlood SDK exists test
 
 local sdk = require("global-flood_sdk")
 
