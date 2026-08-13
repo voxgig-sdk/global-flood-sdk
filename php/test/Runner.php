@@ -43,8 +43,8 @@ class GlobalFloodTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('GLOBALFLOOD_TEST_LIVE');
-        $override = self::getenv('GLOBALFLOOD_TEST_OVERRIDE');
+        $live = self::getenv('GLOBAL_FLOOD_TEST_LIVE');
+        $override = self::getenv('GLOBAL_FLOOD_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class GlobalFloodTestRunner
             }
         }
 
-        $explain = self::getenv('GLOBALFLOOD_TEST_EXPLAIN');
+        $explain = self::getenv('GLOBAL_FLOOD_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['GLOBALFLOOD_TEST_EXPLAIN'] = $explain;
+            $m['GLOBAL_FLOOD_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

@@ -16,25 +16,25 @@ declare(strict_types=1);
 class Flood
 {
     public ?array $daily = null;
-    public ?array $daily_unit = null;
-    public ?float $generationtime_m = null;
+    public ?array $daily_units = null;
+    public ?float $generationtime_ms = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?string $timezone = null;
     public ?string $timezone_abbreviation = null;
-    public ?int $utc_offset_second = null;
+    public ?int $utc_offset_seconds = null;
 }
 
 /** Request payload for Flood#load. */
 class FloodLoadMatch
 {
     public ?array $daily = null;
-    public ?array $daily_unit = null;
-    public ?float $generationtime_m = null;
+    public ?array $daily_units = null;
+    public ?float $generationtime_ms = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?string $timezone = null;
     public ?string $timezone_abbreviation = null;
-    public ?int $utc_offset_second = null;
+    public ?int $utc_offset_seconds = null;
 }
 

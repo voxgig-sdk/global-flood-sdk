@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = GlobalFloodSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = GlobalFloodSDK.test({
+  entity: {
+    flood: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const flood = await client.Flood().load()
-// flood is a bare Flood populated with mock data
+// flood is the Flood entity, populated with mock data
+// — call flood.data() for the record itself
 console.log(flood)
 ```
 
@@ -189,7 +198,7 @@ $client = new GlobalFloodSDK([
 ]);
 
 
-// Load a specific flood (returns the bare record; throws on error)
+// Load a specific flood (returns the ENTITY; call data_get() for the record; throws on error)
 $flood = $client->Flood()->load();
 print_r($flood);
 ```
@@ -221,7 +230,7 @@ client = GlobalFloodSDK.new({
 })
 
 
-# Load a specific flood (returns the bare record; raises on error)
+# Load a specific flood (returns the ENTITY; call data_get for the record)
 flood = client.Flood.load()
 puts flood
 ```
@@ -357,6 +366,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://open-meteo.com](https://open-meteo.com)
 

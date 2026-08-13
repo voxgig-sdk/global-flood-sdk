@@ -33,7 +33,7 @@ class FloodEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set GLOBALFLOOD_TEST_FLOOD_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set GLOBAL_FLOOD_TEST_FLOOD_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -77,39 +77,39 @@ function flood_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("GLOBALFLOOD_TEST_FLOOD_ENTID");
+    $entid_env_raw = getenv("GLOBAL_FLOOD_TEST_FLOOD_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "GLOBALFLOOD_TEST_FLOOD_ENTID" => $idmap,
-        "GLOBALFLOOD_TEST_LIVE" => "FALSE",
-        "GLOBALFLOOD_TEST_EXPLAIN" => "FALSE",
-        "GLOBALFLOOD_APIKEY" => "NONE",
+        "GLOBAL_FLOOD_TEST_FLOOD_ENTID" => $idmap,
+        "GLOBAL_FLOOD_TEST_LIVE" => "FALSE",
+        "GLOBAL_FLOOD_TEST_EXPLAIN" => "FALSE",
+        "GLOBAL_FLOOD_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["GLOBALFLOOD_TEST_FLOOD_ENTID"]);
+        $env["GLOBAL_FLOOD_TEST_FLOOD_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["GLOBALFLOOD_TEST_LIVE"] === "TRUE") {
+    if ($env["GLOBAL_FLOOD_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GLOBALFLOOD_APIKEY"],
+                "apikey" => $env["GLOBAL_FLOOD_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new GlobalFloodSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["GLOBALFLOOD_TEST_LIVE"] === "TRUE";
+    $live = $env["GLOBAL_FLOOD_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["GLOBALFLOOD_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["GLOBAL_FLOOD_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

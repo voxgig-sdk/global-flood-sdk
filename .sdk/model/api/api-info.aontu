@@ -36,3 +36,5 @@ main: {
       website: "https://open-meteo.com/en/docs/flood-api"
     }
   }
+}
+

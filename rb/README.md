@@ -36,7 +36,7 @@ client = GlobalFloodSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Flood record (raises on error).
+  # load returns the ENTITY — call data_get for the Flood record (raises on error).
   flood = client.Flood.load()
   puts flood
 rescue => err
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = GlobalFloodSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 flood = client.Flood.load()
 puts flood
 ```
@@ -239,13 +240,13 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `daily` |  |
-| `daily_unit` |  |
-| `generationtime_m` |  |
+| `daily_units` |  |
+| `generationtime_ms` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `timezone` |  |
 | `timezone_abbreviation` |  |
-| `utc_offset_second` |  |
+| `utc_offset_seconds` |  |
 
 Operations: Load.
 
@@ -271,18 +272,18 @@ Create an instance: `flood = client.Flood`
 | Field | Type | Description |
 | --- | --- | --- |
 | `daily` | `Hash` |  |
-| `daily_unit` | `Hash` |  |
-| `generationtime_m` | `Float` |  |
+| `daily_units` | `Hash` |  |
+| `generationtime_ms` | `Float` |  |
 | `latitude` | `Float` |  |
 | `longitude` | `Float` |  |
 | `timezone` | `String` |  |
 | `timezone_abbreviation` | `String` |  |
-| `utc_offset_second` | `Integer` |  |
+| `utc_offset_seconds` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Flood record (raises on error).
+# load returns the ENTITY — call data_get for the Flood record (raises on error).
 flood = client.Flood.load()
 ```
 

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from globalflood_sdk.utility.voxgig_struct import voxgig_struct as vs
 from globalflood_sdk import GlobalFloodSDK
-from core import helpers
+from globalflood_sdk.core import helpers
 from test import runner
 
 
@@ -62,16 +62,16 @@ def _flood_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "GLOBALFLOOD_TEST_FLOOD_ENTID": {},
-        "GLOBALFLOOD_TEST_LIVE": "FALSE",
-        "GLOBALFLOOD_APIKEY": "NONE",
+        "GLOBAL_FLOOD_TEST_FLOOD_ENTID": {},
+        "GLOBAL_FLOOD_TEST_LIVE": "FALSE",
+        "GLOBAL_FLOOD_APIKEY": "NONE",
     })
 
-    live = env.get("GLOBALFLOOD_TEST_LIVE") == "TRUE"
+    live = env.get("GLOBAL_FLOOD_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("GLOBALFLOOD_APIKEY"),
+            "apikey": env.get("GLOBAL_FLOOD_APIKEY"),
         }
         client = GlobalFloodSDK(merged_opts)
         return {

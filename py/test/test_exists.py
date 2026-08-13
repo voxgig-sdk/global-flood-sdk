@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# GlobalFlood SDK exists test
 
 import pytest
 from globalflood_sdk import GlobalFloodSDK

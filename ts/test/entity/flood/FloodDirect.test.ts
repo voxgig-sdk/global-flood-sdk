@@ -19,11 +19,15 @@ import {
 describe('FloodDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when GLOBALFLOOD_TEST_LIVE=TRUE.
-  afterEach(liveDelay('GLOBALFLOOD_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when GLOBAL_FLOOD_TEST_LIVE=TRUE.
+  afterEach(liveDelay('GLOBAL_FLOOD_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new GlobalFloodSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,19 +81,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'GLOBALFLOOD_TEST_FLOOD_ENTID': {},
-    'GLOBALFLOOD_TEST_LIVE': 'FALSE',
-    'GLOBALFLOOD_APIKEY': 'NONE',
+    'GLOBAL_FLOOD_TEST_FLOOD_ENTID': {},
+    'GLOBAL_FLOOD_TEST_LIVE': 'FALSE',
+    'GLOBAL_FLOOD_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.GLOBALFLOOD_TEST_LIVE
+  const live = 'TRUE' === env.GLOBAL_FLOOD_TEST_LIVE
 
   if (live) {
     const client = new GlobalFloodSDK({
-      apikey: env.GLOBALFLOOD_APIKEY,
+      apikey: env.GLOBAL_FLOOD_APIKEY,
     })
 
-    let idmap: any = env['GLOBALFLOOD_TEST_FLOOD_ENTID']
+    let idmap: any = env['GLOBAL_FLOOD_TEST_FLOOD_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

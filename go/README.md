@@ -264,13 +264,13 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"daily"` |  |
-| `"daily_unit"` |  |
-| `"generationtime_m"` |  |
+| `"daily_units"` |  |
+| `"generationtime_ms"` |  |
 | `"latitude"` |  |
 | `"longitude"` |  |
 | `"timezone"` |  |
 | `"timezone_abbreviation"` |  |
-| `"utc_offset_second"` |  |
+| `"utc_offset_seconds"` |  |
 
 Operations: Load.
 
@@ -296,13 +296,13 @@ Create an instance: `flood := client.Flood(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `daily` | `map[string]any` |  |
-| `daily_unit` | `map[string]any` |  |
-| `generationtime_m` | `float64` |  |
+| `daily_units` | `map[string]any` |  |
+| `generationtime_ms` | `float64` |  |
 | `latitude` | `float64` |  |
 | `longitude` | `float64` |  |
 | `timezone` | `string` |  |
 | `timezone_abbreviation` | `string` |  |
-| `utc_offset_second` | `int` |  |
+| `utc_offset_seconds` | `int` |  |
 
 #### Example: Load
 

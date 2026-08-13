@@ -26,8 +26,8 @@ import {
 describe('FloodEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when GLOBALFLOOD_TEST_LIVE=TRUE.
-  afterEach(liveDelay('GLOBALFLOOD_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when GLOBAL_FLOOD_TEST_LIVE=TRUE.
+  afterEach(liveDelay('GLOBAL_FLOOD_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = GlobalFloodSDK.test()
@@ -62,7 +62,7 @@ describe('FloodEntity', async () => {
     // LOAD
     const flood_ref01_ent = client.Flood()
     const flood_ref01_match_dt0: any = {}
-    const flood_ref01_data_dt0 = await flood_ref01_ent.load(flood_ref01_match_dt0)
+    const flood_ref01_data_dt0 = (await flood_ref01_ent.load(flood_ref01_match_dt0)).data()
     assert(null != flood_ref01_data_dt0)
 
 

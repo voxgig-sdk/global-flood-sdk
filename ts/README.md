@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 const client = GlobalFloodSDK.test()
 
 const flood = await client.Flood().load()
-// flood is a bare entity populated with mock response data
+// flood is the entity, populated with mock response data
+// — call flood.data() for the record itself
 console.log(flood)
 ```
 
@@ -291,13 +292,13 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `daily` |  |
-| `daily_unit` |  |
-| `generationtime_m` |  |
+| `daily_units` |  |
+| `generationtime_ms` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `timezone` |  |
 | `timezone_abbreviation` |  |
-| `utc_offset_second` |  |
+| `utc_offset_seconds` |  |
 
 Operations: load.
 
@@ -323,13 +324,13 @@ Create an instance: `const flood = client.Flood()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `daily` | `Record<string, any>` |  |
-| `daily_unit` | `Record<string, any>` |  |
-| `generationtime_m` | `number` |  |
+| `daily_units` | `Record<string, any>` |  |
+| `generationtime_ms` | `number` |  |
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
 | `timezone` | `string` |  |
 | `timezone_abbreviation` | `string` |  |
-| `utc_offset_second` | `number` |  |
+| `utc_offset_seconds` | `number` |  |
 
 #### Example: Load
 

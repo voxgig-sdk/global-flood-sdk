@@ -37,14 +37,14 @@ module GlobalFloodConfig
             },
             {
               "active" => true,
-              "name" => "daily_unit",
+              "name" => "daily_units",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "generationtime_m",
+              "name" => "generationtime_ms",
               "req" => false,
               "type" => "`$NUMBER`",
               "index$" => 2,
@@ -79,7 +79,7 @@ module GlobalFloodConfig
             },
             {
               "active" => true,
-              "name" => "utc_offset_second",
+              "name" => "utc_offset_seconds",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 7,
@@ -204,6 +204,7 @@ module GlobalFloodConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/flood",
                   "parts" => [

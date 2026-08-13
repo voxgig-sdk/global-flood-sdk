@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ GlobalFloodUtility::setRegistrar(function (GlobalFloodUtility $u): void {
     $u->prepare_params = [GlobalFloodPrepareParams::class, 'call'];
     $u->prepare_path = [GlobalFloodPreparePath::class, 'call'];
     $u->prepare_query = [GlobalFloodPrepareQuery::class, 'call'];
+    $u->graphql_body = [GlobalFloodGraphql::class, 'body'];
+    $u->graphql_errors = [GlobalFloodGraphql::class, 'errors'];
     $u->result_basic = [GlobalFloodResultBasic::class, 'call'];
     $u->result_body = [GlobalFloodResultBody::class, 'call'];
     $u->result_headers = [GlobalFloodResultHeaders::class, 'call'];

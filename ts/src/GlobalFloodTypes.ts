@@ -7,23 +7,23 @@
 
 export interface Flood {
   daily?: Record<string, any>
-  daily_unit?: Record<string, any>
-  generationtime_m?: number
+  daily_units?: Record<string, any>
+  generationtime_ms?: number
   latitude?: number
   longitude?: number
   timezone?: string
   timezone_abbreviation?: string
-  utc_offset_second?: number
+  utc_offset_seconds?: number
 }
 
 export interface FloodLoadMatch {
   daily?: Record<string, any>
-  daily_unit?: Record<string, any>
-  generationtime_m?: number
+  daily_units?: Record<string, any>
+  generationtime_ms?: number
   latitude?: number
   longitude?: number
   timezone?: string
   timezone_abbreviation?: string
-  utc_offset_second?: number
+  utc_offset_seconds?: number
 }
 

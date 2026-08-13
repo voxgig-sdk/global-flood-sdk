@@ -67,16 +67,16 @@ function flood_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["GLOBALFLOOD_TEST_FLOOD_ENTID"] = {},
-    ["GLOBALFLOOD_TEST_LIVE"] = "FALSE",
-    ["GLOBALFLOOD_APIKEY"] = "NONE",
+    ["GLOBAL_FLOOD_TEST_FLOOD_ENTID"] = {},
+    ["GLOBAL_FLOOD_TEST_LIVE"] = "FALSE",
+    ["GLOBAL_FLOOD_APIKEY"] = "NONE",
   })
 
-  local live = env["GLOBALFLOOD_TEST_LIVE"] == "TRUE"
+  local live = env["GLOBAL_FLOOD_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["GLOBALFLOOD_APIKEY"],
+      apikey = env["GLOBAL_FLOOD_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

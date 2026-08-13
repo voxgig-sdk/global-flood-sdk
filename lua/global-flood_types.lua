@@ -8,23 +8,23 @@
 
 ---@class Flood
 ---@field daily? table
----@field daily_unit? table
----@field generationtime_m? number
+---@field daily_units? table
+---@field generationtime_ms? number
 ---@field latitude? number
 ---@field longitude? number
 ---@field timezone? string
 ---@field timezone_abbreviation? string
----@field utc_offset_second? number
+---@field utc_offset_seconds? number
 
 ---@class FloodLoadMatch
 ---@field daily? table
----@field daily_unit? table
----@field generationtime_m? number
+---@field daily_units? table
+---@field generationtime_ms? number
 ---@field latitude? number
 ---@field longitude? number
 ---@field timezone? string
 ---@field timezone_abbreviation? string
----@field utc_offset_second? number
+---@field utc_offset_seconds? number
 
 local M = {}
 

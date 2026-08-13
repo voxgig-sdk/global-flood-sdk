@@ -23,8 +23,8 @@ module GlobalFloodTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("GLOBALFLOOD_TEST_LIVE")
-    override = getenv("GLOBALFLOOD_TEST_OVERRIDE")
+    live = getenv("GLOBAL_FLOOD_TEST_LIVE")
+    override = getenv("GLOBAL_FLOOD_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module GlobalFloodTestRunner
       end
     end
 
-    explain = getenv("GLOBALFLOOD_TEST_EXPLAIN")
-    m["GLOBALFLOOD_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("GLOBAL_FLOOD_TEST_EXPLAIN")
+    m["GLOBAL_FLOOD_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

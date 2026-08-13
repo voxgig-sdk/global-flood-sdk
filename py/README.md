@@ -41,7 +41,7 @@ client = GlobalFloodSDK({
 
 ### 3. Load a flood
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GlobalFloodSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 flood = client.Flood().load()
 # flood contains the mock response record
 ```
@@ -223,7 +224,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -246,13 +247,13 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `daily` |  |
-| `daily_unit` |  |
-| `generationtime_m` |  |
+| `daily_units` |  |
+| `generationtime_ms` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `timezone` |  |
 | `timezone_abbreviation` |  |
-| `utc_offset_second` |  |
+| `utc_offset_seconds` |  |
 
 Operations: Load.
 
@@ -278,13 +279,13 @@ Create an instance: `flood = client.Flood()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `daily` | `dict` |  |
-| `daily_unit` | `dict` |  |
-| `generationtime_m` | `float` |  |
+| `daily_units` | `dict` |  |
+| `generationtime_ms` | `float` |  |
 | `latitude` | `float` |  |
 | `longitude` | `float` |  |
 | `timezone` | `str` |  |
 | `timezone_abbreviation` | `str` |  |
-| `utc_offset_second` | `int` |  |
+| `utc_offset_seconds` | `int` |  |
 
 #### Example: Load
 

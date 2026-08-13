@@ -13,10 +13,10 @@
 # @!attribute [rw] daily
 #   @return [Hash, nil]
 #
-# @!attribute [rw] daily_unit
+# @!attribute [rw] daily_units
 #   @return [Hash, nil]
 #
-# @!attribute [rw] generationtime_m
+# @!attribute [rw] generationtime_ms
 #   @return [Float, nil]
 #
 # @!attribute [rw] latitude
@@ -31,17 +31,17 @@
 # @!attribute [rw] timezone_abbreviation
 #   @return [String, nil]
 #
-# @!attribute [rw] utc_offset_second
+# @!attribute [rw] utc_offset_seconds
 #   @return [Integer, nil]
 Flood = Struct.new(
   :daily,
-  :daily_unit,
-  :generationtime_m,
+  :daily_units,
+  :generationtime_ms,
   :latitude,
   :longitude,
   :timezone,
   :timezone_abbreviation,
-  :utc_offset_second,
+  :utc_offset_seconds,
   keyword_init: true
 )
 
@@ -50,10 +50,10 @@ Flood = Struct.new(
 # @!attribute [rw] daily
 #   @return [Hash, nil]
 #
-# @!attribute [rw] daily_unit
+# @!attribute [rw] daily_units
 #   @return [Hash, nil]
 #
-# @!attribute [rw] generationtime_m
+# @!attribute [rw] generationtime_ms
 #   @return [Float, nil]
 #
 # @!attribute [rw] latitude
@@ -68,17 +68,17 @@ Flood = Struct.new(
 # @!attribute [rw] timezone_abbreviation
 #   @return [String, nil]
 #
-# @!attribute [rw] utc_offset_second
+# @!attribute [rw] utc_offset_seconds
 #   @return [Integer, nil]
 FloodLoadMatch = Struct.new(
   :daily,
-  :daily_unit,
-  :generationtime_m,
+  :daily_units,
+  :generationtime_ms,
   :latitude,
   :longitude,
   :timezone,
   :timezone_abbreviation,
-  :utc_offset_second,
+  :utc_offset_seconds,
   keyword_init: true
 )
 

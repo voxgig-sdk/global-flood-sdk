@@ -42,7 +42,8 @@ func TestFloodDirect(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -104,21 +105,21 @@ func floodDirectSetup(mockres any) *floodDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"GLOBALFLOOD_TEST_FLOOD_ENTID": map[string]any{},
-		"GLOBALFLOOD_TEST_LIVE":    "FALSE",
-		"GLOBALFLOOD_APIKEY":       "NONE",
+		"GLOBAL_FLOOD_TEST_FLOOD_ENTID": map[string]any{},
+		"GLOBAL_FLOOD_TEST_LIVE":    "FALSE",
+		"GLOBAL_FLOOD_APIKEY":       "NONE",
 	})
 
-	live := env["GLOBALFLOOD_TEST_LIVE"] == "TRUE"
+	live := env["GLOBAL_FLOOD_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["GLOBALFLOOD_APIKEY"],
+			"apikey": env["GLOBAL_FLOOD_APIKEY"],
 		}
 		client := sdk.NewGlobalFloodSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["GLOBALFLOOD_TEST_FLOOD_ENTID"]; ok {
+		if entidRaw, ok := env["GLOBAL_FLOOD_TEST_FLOOD_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

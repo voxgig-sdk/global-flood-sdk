@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import GlobalFloodControl
-from core.error import GlobalFloodError
-from core.result import GlobalFloodResult
-from core.spec import GlobalFloodSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import GlobalFloodControl
+from projectname_sdk.core.error import GlobalFloodError
+from projectname_sdk.core.result import GlobalFloodResult
+from projectname_sdk.core.spec import GlobalFloodSpec
 
 
 # True when this SDK was generated with the named feature.

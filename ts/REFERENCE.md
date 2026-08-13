@@ -118,13 +118,13 @@ const flood = client.Flood()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `daily` | `Record<string, any>` | No |  |
-| `daily_unit` | `Record<string, any>` | No |  |
-| `generationtime_m` | `number` | No |  |
+| `daily_units` | `Record<string, any>` | No |  |
+| `generationtime_ms` | `number` | No |  |
 | `latitude` | `number` | No |  |
 | `longitude` | `number` | No |  |
 | `timezone` | `string` | No |  |
 | `timezone_abbreviation` | `string` | No |  |
-| `utc_offset_second` | `number` | No |  |
+| `utc_offset_seconds` | `number` | No |  |
 
 ### Operations
 

@@ -89,13 +89,13 @@ flood = client.Flood()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `daily` | `dict` | No |  |
-| `daily_unit` | `dict` | No |  |
-| `generationtime_m` | `float` | No |  |
+| `daily_units` | `dict` | No |  |
+| `generationtime_ms` | `float` | No |  |
 | `latitude` | `float` | No |  |
 | `longitude` | `float` | No |  |
 | `timezone` | `str` | No |  |
 | `timezone_abbreviation` | `str` | No |  |
-| `utc_offset_second` | `int` | No |  |
+| `utc_offset_seconds` | `int` | No |  |
 
 ### Operations
 

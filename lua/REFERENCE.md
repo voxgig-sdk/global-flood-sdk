@@ -92,13 +92,13 @@ local flood = client:Flood(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `daily` | `table` | No |  |
-| `daily_unit` | `table` | No |  |
-| `generationtime_m` | `number` | No |  |
+| `daily_units` | `table` | No |  |
+| `generationtime_ms` | `number` | No |  |
 | `latitude` | `number` | No |  |
 | `longitude` | `number` | No |  |
 | `timezone` | `string` | No |  |
 | `timezone_abbreviation` | `string` | No |  |
-| `utc_offset_second` | `number` | No |  |
+| `utc_offset_seconds` | `number` | No |  |
 
 ### Operations
 

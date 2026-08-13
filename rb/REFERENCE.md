@@ -95,13 +95,13 @@ flood = client.Flood
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `daily` | `Hash` | No |  |
-| `daily_unit` | `Hash` | No |  |
-| `generationtime_m` | `Float` | No |  |
+| `daily_units` | `Hash` | No |  |
+| `generationtime_ms` | `Float` | No |  |
 | `latitude` | `Float` | No |  |
 | `longitude` | `Float` | No |  |
 | `timezone` | `String` | No |  |
 | `timezone_abbreviation` | `String` | No |  |
-| `utc_offset_second` | `Integer` | No |  |
+| `utc_offset_seconds` | `Integer` | No |  |
 
 ### Operations
 

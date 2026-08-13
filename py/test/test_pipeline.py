@@ -16,11 +16,11 @@
 import pytest
 
 from globalflood_sdk import GlobalFloodSDK
-from core.error import GlobalFloodError
-from core.result import GlobalFloodResult
-from core.response import GlobalFloodResponse
-from core.spec import GlobalFloodSpec
-from feature.base_feature import GlobalFloodBaseFeature
+from globalflood_sdk.core.error import GlobalFloodError
+from globalflood_sdk.core.result import GlobalFloodResult
+from globalflood_sdk.core.response import GlobalFloodResponse
+from globalflood_sdk.core.spec import GlobalFloodSpec
+from globalflood_sdk.feature.base_feature import GlobalFloodBaseFeature
 
 
 def _client():

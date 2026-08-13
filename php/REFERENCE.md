@@ -94,13 +94,13 @@ $flood = $client->Flood();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `daily` | `array` | No |  |
-| `daily_unit` | `array` | No |  |
-| `generationtime_m` | `float` | No |  |
+| `daily_units` | `array` | No |  |
+| `generationtime_ms` | `float` | No |  |
 | `latitude` | `float` | No |  |
 | `longitude` | `float` | No |  |
 | `timezone` | `string` | No |  |
 | `timezone_abbreviation` | `string` | No |  |
-| `utc_offset_second` | `int` | No |  |
+| `utc_offset_seconds` | `int` | No |  |
 
 ### Operations
 

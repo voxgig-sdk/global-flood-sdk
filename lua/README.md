@@ -230,13 +230,13 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `daily` |  |
-| `daily_unit` |  |
-| `generationtime_m` |  |
+| `daily_units` |  |
+| `generationtime_ms` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `timezone` |  |
 | `timezone_abbreviation` |  |
-| `utc_offset_second` |  |
+| `utc_offset_seconds` |  |
 
 Operations: Load.
 
@@ -262,13 +262,13 @@ Create an instance: `local flood = client:Flood(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `daily` | `table` |  |
-| `daily_unit` | `table` |  |
-| `generationtime_m` | `number` |  |
+| `daily_units` | `table` |  |
+| `generationtime_ms` | `number` |  |
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
 | `timezone` | `string` |  |
 | `timezone_abbreviation` | `string` |  |
-| `utc_offset_second` | `number` |  |
+| `utc_offset_seconds` | `number` |  |
 
 #### Example: Load
 

@@ -100,13 +100,13 @@ fmt.Println(flood.GetName()) // "flood"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `daily` | `map[string]any` | No |  |
-| `daily_unit` | `map[string]any` | No |  |
-| `generationtime_m` | `float64` | No |  |
+| `daily_units` | `map[string]any` | No |  |
+| `generationtime_ms` | `float64` | No |  |
 | `latitude` | `float64` | No |  |
 | `longitude` | `float64` | No |  |
 | `timezone` | `string` | No |  |
 | `timezone_abbreviation` | `string` | No |  |
-| `utc_offset_second` | `int` | No |  |
+| `utc_offset_seconds` | `int` | No |  |
 
 ### Operations
 
