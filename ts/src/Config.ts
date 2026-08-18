@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://flood-api.open-meteo.com',
+    base: "https://flood-api.open-meteo.com",
 
     auth: {
       prefix: '',
@@ -59,60 +59,36 @@ class Config {
     "flood": {
       "fields": [
         {
-          "active": true,
           "name": "daily",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "daily_units",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "generationtime_ms",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "latitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 3
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "longitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 4
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "timezone",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "timezone_abbreviation",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "utc_offset_seconds",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         }
       ],
       "name": "flood",
@@ -122,64 +98,50 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "apikey",
                     "orig": "apikey",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "nearest",
                     "kind": "query",
                     "name": "cell_selection",
                     "orig": "cell_selection",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "river_discharge",
                     "kind": "query",
                     "name": "daily",
                     "orig": "daily",
-                    "reqd": false,
                     "type": "`$ARRAY`"
                   },
                   {
-                    "active": true,
                     "example": "2022-07-30",
                     "kind": "query",
                     "name": "end_date",
                     "orig": "end_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": false,
                     "kind": "query",
                     "name": "ensemble",
                     "orig": "ensemble",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "example": 92,
                     "kind": "query",
                     "name": "forecast_day",
                     "orig": "forecast_day",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": "59.9",
                     "kind": "query",
                     "name": "latitude",
@@ -188,7 +150,6 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "10.75",
                     "kind": "query",
                     "name": "longitude",
@@ -197,39 +158,31 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "past_day",
                     "orig": "past_day",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": "2022-06-30",
                     "kind": "query",
                     "name": "start_date",
                     "orig": "start_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "iso8601",
                     "kind": "query",
                     "name": "timeformat",
                     "orig": "timeformat",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "Europe/Berlin",
                     "kind": "query",
                     "name": "timezone",
                     "orig": "timezone",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -260,11 +213,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {

@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class GlobalFloodConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -34,60 +57,36 @@ class GlobalFloodConfig
         'flood' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'daily',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'daily_units',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'generationtime_ms',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'latitude',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'longitude',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'timezone',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'timezone_abbreviation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'utc_offset_seconds',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 7,
             ],
           ],
           'name' => 'flood',
@@ -97,64 +96,50 @@ class GlobalFloodConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'apikey',
                         'orig' => 'apikey',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'nearest',
                         'kind' => 'query',
                         'name' => 'cell_selection',
                         'orig' => 'cell_selection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'river_discharge',
                         'kind' => 'query',
                         'name' => 'daily',
                         'orig' => 'daily',
-                        'reqd' => false,
                         'type' => '`$ARRAY`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2022-07-30',
                         'kind' => 'query',
                         'name' => 'end_date',
                         'orig' => 'end_date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => false,
                         'kind' => 'query',
                         'name' => 'ensemble',
                         'orig' => 'ensemble',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 92,
                         'kind' => 'query',
                         'name' => 'forecast_day',
                         'orig' => 'forecast_day',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => '59.9',
                         'kind' => 'query',
                         'name' => 'latitude',
@@ -163,7 +148,6 @@ class GlobalFloodConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '10.75',
                         'kind' => 'query',
                         'name' => 'longitude',
@@ -172,39 +156,31 @@ class GlobalFloodConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'past_day',
                         'orig' => 'past_day',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2022-06-30',
                         'kind' => 'query',
                         'name' => 'start_date',
                         'orig' => 'start_date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'iso8601',
                         'kind' => 'query',
                         'name' => 'timeformat',
                         'orig' => 'timeformat',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'Europe/Berlin',
                         'kind' => 'query',
                         'name' => 'timezone',
                         'orig' => 'timezone',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -236,10 +212,8 @@ class GlobalFloodConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [

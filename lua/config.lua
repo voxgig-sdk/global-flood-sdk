@@ -1,5 +1,8 @@
 -- GlobalFlood SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -28,60 +31,36 @@ local function make_config()
       ["flood"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "daily",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "daily_units",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "generationtime_ms",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "latitude",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "longitude",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "timezone",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "timezone_abbreviation",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "utc_offset_seconds",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 7,
           },
         },
         ["name"] = "flood",
@@ -91,64 +70,50 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "apikey",
                       ["orig"] = "apikey",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "nearest",
                       ["kind"] = "query",
                       ["name"] = "cell_selection",
                       ["orig"] = "cell_selection",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "river_discharge",
                       ["kind"] = "query",
                       ["name"] = "daily",
                       ["orig"] = "daily",
-                      ["reqd"] = false,
                       ["type"] = "`$ARRAY`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "2022-07-30",
                       ["kind"] = "query",
                       ["name"] = "end_date",
                       ["orig"] = "end_date",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = false,
                       ["kind"] = "query",
                       ["name"] = "ensemble",
                       ["orig"] = "ensemble",
-                      ["reqd"] = false,
                       ["type"] = "`$BOOLEAN`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = 92,
                       ["kind"] = "query",
                       ["name"] = "forecast_day",
                       ["orig"] = "forecast_day",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "59.9",
                       ["kind"] = "query",
                       ["name"] = "latitude",
@@ -157,7 +122,6 @@ local function make_config()
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "10.75",
                       ["kind"] = "query",
                       ["name"] = "longitude",
@@ -166,39 +130,31 @@ local function make_config()
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = 0,
                       ["kind"] = "query",
                       ["name"] = "past_day",
                       ["orig"] = "past_day",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "2022-06-30",
                       ["kind"] = "query",
                       ["name"] = "start_date",
                       ["orig"] = "start_date",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "iso8601",
                       ["kind"] = "query",
                       ["name"] = "timeformat",
                       ["orig"] = "timeformat",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "Europe/Berlin",
                       ["kind"] = "query",
                       ["name"] = "timezone",
                       ["orig"] = "timezone",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -230,10 +186,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {

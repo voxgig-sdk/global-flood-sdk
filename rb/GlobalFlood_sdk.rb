@@ -28,7 +28,7 @@ class GlobalFloodSDK
     utility = GlobalFloodUtility.new
     @_utility = utility
 
-    config = GlobalFloodConfig.make_config
+    config = GlobalFloodConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

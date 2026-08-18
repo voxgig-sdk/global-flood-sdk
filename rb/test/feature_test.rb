@@ -15,7 +15,7 @@ require_relative "../GlobalFlood_sdk"
 module GlobalFloodFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = GlobalFloodConfig.make_config["feature"]
+    f = GlobalFloodConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

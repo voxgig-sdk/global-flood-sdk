@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from globalflood_sdk.config import make_config
+from globalflood_sdk.config import shared_config
 from globalflood_sdk.features import _make_feature
 from globalflood_sdk.core.control import GlobalFloodControl
 from globalflood_sdk.core.error import GlobalFloodError
@@ -24,7 +24,7 @@ from globalflood_sdk.core.spec import GlobalFloodSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

@@ -40,7 +40,7 @@ class GlobalFloodSDK
         $utility = new GlobalFloodUtility();
         $this->_utility = $utility;
 
-        $config = GlobalFloodConfig::make_config();
+        $config = GlobalFloodConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
