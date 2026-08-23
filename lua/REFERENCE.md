@@ -91,14 +91,14 @@ local flood = client:Flood(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | `table` | No |  |
-| `daily_units` | `table` | No |  |
-| `generationtime_ms` | `number` | No |  |
-| `latitude` | `number` | No |  |
-| `longitude` | `number` | No |  |
-| `timezone` | `string` | No |  |
-| `timezone_abbreviation` | `string` | No |  |
-| `utc_offset_seconds` | `number` | No |  |
+| `daily` | `table` | No | Daily flood data |
+| `daily_units` | `table` | No | Units for each daily variable |
+| `generationtime_ms` | `number` | No | Generation time of the forecast in milliseconds |
+| `latitude` | `number` | No | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `number` | No | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `string` | No | Timezone identifier |
+| `timezone_abbreviation` | `string` | No | Timezone abbreviation |
+| `utc_offset_seconds` | `number` | No | UTC offset in seconds |
 
 ### Operations
 

@@ -93,14 +93,14 @@ $flood = $client->Flood();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | `array` | No |  |
-| `daily_units` | `array` | No |  |
-| `generationtime_ms` | `float` | No |  |
-| `latitude` | `float` | No |  |
-| `longitude` | `float` | No |  |
-| `timezone` | `string` | No |  |
-| `timezone_abbreviation` | `string` | No |  |
-| `utc_offset_seconds` | `int` | No |  |
+| `daily` | `array` | No | Daily flood data |
+| `daily_units` | `array` | No | Units for each daily variable |
+| `generationtime_ms` | `float` | No | Generation time of the forecast in milliseconds |
+| `latitude` | `float` | No | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `float` | No | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `string` | No | Timezone identifier |
+| `timezone_abbreviation` | `string` | No | Timezone abbreviation |
+| `utc_offset_seconds` | `int` | No | UTC offset in seconds |
 
 ### Operations
 

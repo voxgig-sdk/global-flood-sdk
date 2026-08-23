@@ -239,14 +239,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `daily` |  |
-| `daily_units` |  |
-| `generationtime_ms` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `timezone` |  |
-| `timezone_abbreviation` |  |
-| `utc_offset_seconds` |  |
+| `daily` | Daily flood data |
+| `daily_units` | Units for each daily variable |
+| `generationtime_ms` | Generation time of the forecast in milliseconds |
+| `latitude` | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | Timezone identifier |
+| `timezone_abbreviation` | Timezone abbreviation |
+| `utc_offset_seconds` | UTC offset in seconds |
 
 Operations: Load.
 
@@ -271,14 +271,14 @@ Create an instance: `flood = client.Flood`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `daily` | `Hash` |  |
-| `daily_units` | `Hash` |  |
-| `generationtime_ms` | `Float` |  |
-| `latitude` | `Float` |  |
-| `longitude` | `Float` |  |
-| `timezone` | `String` |  |
-| `timezone_abbreviation` | `String` |  |
-| `utc_offset_seconds` | `Integer` |  |
+| `daily` | `Hash` | Daily flood data |
+| `daily_units` | `Hash` | Units for each daily variable |
+| `generationtime_ms` | `Float` | Generation time of the forecast in milliseconds |
+| `latitude` | `Float` | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `Float` | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `String` | Timezone identifier |
+| `timezone_abbreviation` | `String` | Timezone abbreviation |
+| `utc_offset_seconds` | `Integer` | UTC offset in seconds |
 
 #### Example: Load
 

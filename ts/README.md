@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -291,14 +291,14 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `daily` |  |
-| `daily_units` |  |
-| `generationtime_ms` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `timezone` |  |
-| `timezone_abbreviation` |  |
-| `utc_offset_seconds` |  |
+| `daily` | Daily flood data |
+| `daily_units` | Units for each daily variable |
+| `generationtime_ms` | Generation time of the forecast in milliseconds |
+| `latitude` | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | Timezone identifier |
+| `timezone_abbreviation` | Timezone abbreviation |
+| `utc_offset_seconds` | UTC offset in seconds |
 
 Operations: load.
 
@@ -323,14 +323,14 @@ Create an instance: `const flood = client.Flood()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `daily` | `Record<string, any>` |  |
-| `daily_units` | `Record<string, any>` |  |
-| `generationtime_ms` | `number` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
-| `timezone` | `string` |  |
-| `timezone_abbreviation` | `string` |  |
-| `utc_offset_seconds` | `number` |  |
+| `daily` | `Record<string, any>` | Daily flood data |
+| `daily_units` | `Record<string, any>` | Units for each daily variable |
+| `generationtime_ms` | `number` | Generation time of the forecast in milliseconds |
+| `latitude` | `number` | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `number` | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `string` | Timezone identifier |
+| `timezone_abbreviation` | `string` | Timezone abbreviation |
+| `utc_offset_seconds` | `number` | UTC offset in seconds |
 
 #### Example: Load
 

@@ -229,14 +229,14 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `daily` |  |
-| `daily_units` |  |
-| `generationtime_ms` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `timezone` |  |
-| `timezone_abbreviation` |  |
-| `utc_offset_seconds` |  |
+| `daily` | Daily flood data |
+| `daily_units` | Units for each daily variable |
+| `generationtime_ms` | Generation time of the forecast in milliseconds |
+| `latitude` | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | Timezone identifier |
+| `timezone_abbreviation` | Timezone abbreviation |
+| `utc_offset_seconds` | UTC offset in seconds |
 
 Operations: Load.
 
@@ -261,14 +261,14 @@ Create an instance: `local flood = client:Flood(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `daily` | `table` |  |
-| `daily_units` | `table` |  |
-| `generationtime_ms` | `number` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
-| `timezone` | `string` |  |
-| `timezone_abbreviation` | `string` |  |
-| `utc_offset_seconds` | `number` |  |
+| `daily` | `table` | Daily flood data |
+| `daily_units` | `table` | Units for each daily variable |
+| `generationtime_ms` | `number` | Generation time of the forecast in milliseconds |
+| `latitude` | `number` | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `number` | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `string` | Timezone identifier |
+| `timezone_abbreviation` | `string` | Timezone abbreviation |
+| `utc_offset_seconds` | `number` | UTC offset in seconds |
 
 #### Example: Load
 

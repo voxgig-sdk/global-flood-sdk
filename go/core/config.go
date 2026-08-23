@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "GlobalFlood",
+			"slug": "global-flood",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,34 +39,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "daily",
+						"short": "Daily flood data",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "daily_units",
+						"short": "Units for each daily variable",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "generationtime_ms",
+						"short": "Generation time of the forecast in milliseconds",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "latitude",
+						"short": "WGS84 latitude of the center of the weather grid-cell",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "longitude",
+						"short": "WGS84 longitude of the center of the weather grid-cell",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "timezone",
+						"short": "Timezone identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timezone_abbreviation",
+						"short": "Timezone abbreviation",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "utc_offset_seconds",
+						"short": "UTC offset in seconds",
 						"type": "`$INTEGER`",
 					},
 				},

@@ -8,41 +8,49 @@ main: kit: entity: flood: {
     {
       name: "daily"
       req: false
+      short: "Daily flood data"
       type: "`$OBJECT`"
     }
     {
       name: "daily_units"
       req: false
+      short: "Units for each daily variable"
       type: "`$OBJECT`"
     }
     {
       name: "generationtime_ms"
       req: false
+      short: "Generation time of the forecast in milliseconds"
       type: "`$NUMBER`"
     }
     {
       name: "latitude"
       req: false
+      short: "WGS84 latitude of the center of the weather grid-cell"
       type: "`$NUMBER`"
     }
     {
       name: "longitude"
       req: false
+      short: "WGS84 longitude of the center of the weather grid-cell"
       type: "`$NUMBER`"
     }
     {
       name: "timezone"
       req: false
+      short: "Timezone identifier"
       type: "`$STRING`"
     }
     {
       name: "timezone_abbreviation"
       req: false
+      short: "Timezone abbreviation"
       type: "`$STRING`"
     }
     {
       name: "utc_offset_seconds"
       req: false
+      short: "UTC offset in seconds"
       type: "`$INTEGER`"
     }
   ]

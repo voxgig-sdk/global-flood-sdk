@@ -99,14 +99,14 @@ fmt.Println(flood.GetName()) // "flood"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | `map[string]any` | No |  |
-| `daily_units` | `map[string]any` | No |  |
-| `generationtime_ms` | `float64` | No |  |
-| `latitude` | `float64` | No |  |
-| `longitude` | `float64` | No |  |
-| `timezone` | `string` | No |  |
-| `timezone_abbreviation` | `string` | No |  |
-| `utc_offset_seconds` | `int` | No |  |
+| `daily` | `map[string]any` | No | Daily flood data |
+| `daily_units` | `map[string]any` | No | Units for each daily variable |
+| `generationtime_ms` | `float64` | No | Generation time of the forecast in milliseconds |
+| `latitude` | `float64` | No | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `float64` | No | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `string` | No | Timezone identifier |
+| `timezone_abbreviation` | `string` | No | Timezone abbreviation |
+| `utc_offset_seconds` | `int` | No | UTC offset in seconds |
 
 ### Operations
 

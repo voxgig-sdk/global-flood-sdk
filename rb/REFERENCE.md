@@ -94,14 +94,14 @@ flood = client.Flood
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `daily` | `Hash` | No |  |
-| `daily_units` | `Hash` | No |  |
-| `generationtime_ms` | `Float` | No |  |
-| `latitude` | `Float` | No |  |
-| `longitude` | `Float` | No |  |
-| `timezone` | `String` | No |  |
-| `timezone_abbreviation` | `String` | No |  |
-| `utc_offset_seconds` | `Integer` | No |  |
+| `daily` | `Hash` | No | Daily flood data |
+| `daily_units` | `Hash` | No | Units for each daily variable |
+| `generationtime_ms` | `Float` | No | Generation time of the forecast in milliseconds |
+| `latitude` | `Float` | No | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `Float` | No | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `String` | No | Timezone identifier |
+| `timezone_abbreviation` | `String` | No | Timezone abbreviation |
+| `utc_offset_seconds` | `Integer` | No | UTC offset in seconds |
 
 ### Operations
 

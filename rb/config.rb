@@ -19,6 +19,9 @@ module GlobalFloodConfig
     {
       "main" => {
         "name" => "GlobalFlood",
+        "slug" => "global-flood",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -44,34 +47,42 @@ module GlobalFloodConfig
           "fields" => [
             {
               "name" => "daily",
+              "short" => "Daily flood data",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "daily_units",
+              "short" => "Units for each daily variable",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "generationtime_ms",
+              "short" => "Generation time of the forecast in milliseconds",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "latitude",
+              "short" => "WGS84 latitude of the center of the weather grid-cell",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "longitude",
+              "short" => "WGS84 longitude of the center of the weather grid-cell",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "timezone",
+              "short" => "Timezone identifier",
               "type" => "`$STRING`",
             },
             {
               "name" => "timezone_abbreviation",
+              "short" => "Timezone abbreviation",
               "type" => "`$STRING`",
             },
             {
               "name" => "utc_offset_seconds",
+              "short" => "UTC offset in seconds",
               "type" => "`$INTEGER`",
             },
           ],

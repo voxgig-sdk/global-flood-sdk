@@ -36,48 +36,56 @@
               "active": true,
               "name": "daily",
               "req": false,
+              "short": "Daily flood data",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "daily_units",
               "req": false,
+              "short": "Units for each daily variable",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "generationtime_ms",
               "req": false,
+              "short": "Generation time of the forecast in milliseconds",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": false,
+              "short": "WGS84 latitude of the center of the weather grid-cell",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "WGS84 longitude of the center of the weather grid-cell",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "timezone",
               "req": false,
+              "short": "Timezone identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timezone_abbreviation",
               "req": false,
+              "short": "Timezone abbreviation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "utc_offset_seconds",
               "req": false,
+              "short": "UTC offset in seconds",
               "type": "`$INTEGER`"
             }
           ],

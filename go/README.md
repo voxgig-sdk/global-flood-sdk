@@ -6,7 +6,7 @@ The Golang SDK for the GlobalFlood API — an entity-oriented client using stand
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Flood(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -263,14 +263,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"daily"` |  |
-| `"daily_units"` |  |
-| `"generationtime_ms"` |  |
-| `"latitude"` |  |
-| `"longitude"` |  |
-| `"timezone"` |  |
-| `"timezone_abbreviation"` |  |
-| `"utc_offset_seconds"` |  |
+| `"daily"` | Daily flood data |
+| `"daily_units"` | Units for each daily variable |
+| `"generationtime_ms"` | Generation time of the forecast in milliseconds |
+| `"latitude"` | WGS84 latitude of the center of the weather grid-cell |
+| `"longitude"` | WGS84 longitude of the center of the weather grid-cell |
+| `"timezone"` | Timezone identifier |
+| `"timezone_abbreviation"` | Timezone abbreviation |
+| `"utc_offset_seconds"` | UTC offset in seconds |
 
 Operations: Load.
 
@@ -295,14 +295,14 @@ Create an instance: `flood := client.Flood(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `daily` | `map[string]any` |  |
-| `daily_units` | `map[string]any` |  |
-| `generationtime_ms` | `float64` |  |
-| `latitude` | `float64` |  |
-| `longitude` | `float64` |  |
-| `timezone` | `string` |  |
-| `timezone_abbreviation` | `string` |  |
-| `utc_offset_seconds` | `int` |  |
+| `daily` | `map[string]any` | Daily flood data |
+| `daily_units` | `map[string]any` | Units for each daily variable |
+| `generationtime_ms` | `float64` | Generation time of the forecast in milliseconds |
+| `latitude` | `float64` | WGS84 latitude of the center of the weather grid-cell |
+| `longitude` | `float64` | WGS84 longitude of the center of the weather grid-cell |
+| `timezone` | `string` | Timezone identifier |
+| `timezone_abbreviation` | `string` | Timezone abbreviation |
+| `utc_offset_seconds` | `int` | UTC offset in seconds |
 
 #### Example: Load
 
