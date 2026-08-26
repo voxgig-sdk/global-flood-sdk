@@ -42,6 +42,7 @@ class GlobalFloodConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
