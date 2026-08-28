@@ -47,38 +47,54 @@ Flood = Struct.new(
 
 # Request payload for Flood#load.
 #
+# @!attribute [rw] apikey
+#   @return [String, nil]
+#
+# @!attribute [rw] cell_selection
+#   @return [String, nil]
+#
 # @!attribute [rw] daily
-#   @return [Hash, nil]
+#   @return [Array, nil]
 #
-# @!attribute [rw] daily_units
-#   @return [Hash, nil]
+# @!attribute [rw] end_date
+#   @return [String, nil]
 #
-# @!attribute [rw] generationtime_ms
-#   @return [Float, nil]
+# @!attribute [rw] ensemble
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] forecast_day
+#   @return [Integer, nil]
 #
 # @!attribute [rw] latitude
-#   @return [Float, nil]
+#   @return [String]
 #
 # @!attribute [rw] longitude
-#   @return [Float, nil]
+#   @return [String]
+#
+# @!attribute [rw] past_day
+#   @return [Integer, nil]
+#
+# @!attribute [rw] start_date
+#   @return [String, nil]
+#
+# @!attribute [rw] timeformat
+#   @return [String, nil]
 #
 # @!attribute [rw] timezone
 #   @return [String, nil]
-#
-# @!attribute [rw] timezone_abbreviation
-#   @return [String, nil]
-#
-# @!attribute [rw] utc_offset_seconds
-#   @return [Integer, nil]
 FloodLoadMatch = Struct.new(
+  :apikey,
+  :cell_selection,
   :daily,
-  :daily_units,
-  :generationtime_ms,
+  :end_date,
+  :ensemble,
+  :forecast_day,
   :latitude,
   :longitude,
+  :past_day,
+  :start_date,
+  :timeformat,
   :timezone,
-  :timezone_abbreviation,
-  :utc_offset_seconds,
   keyword_init: true
 )
 

@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single flood — the value is the loaded record.
-    flood, err := client.Flood(nil).Load(nil, nil)
+    flood, err := client.Flood(nil).Load(map[string]any{"latitude": "example_latitude", "longitude": "example_longitude"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-flood, err := client.Flood(nil).Load(nil, nil)
+flood, err := client.Flood(nil).Load(map[string]any{"latitude": "example", "longitude": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 flood, err := client.Flood(nil).Load(
-    nil, nil,
+    map[string]any{"latitude": "example", "longitude": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -307,12 +307,35 @@ Create an instance: `flood := client.Flood(nil)`
 #### Example: Load
 
 ```go
-flood, err := client.Flood(nil).Load(nil, nil)
+flood, err := client.Flood(nil).Load(map[string]any{"latitude": "latitude", "longitude": "longitude"}, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(flood) // the loaded record
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -389,7 +412,7 @@ stores the returned data and match criteria internally.
 
 ```go
 flood := client.Flood(nil)
-flood.Load(nil, nil)
+flood.Load(map[string]any{"latitude": "example", "longitude": "example"}, nil)
 
 // flood.Data() now returns the flood data from the last load
 // flood.Match() returns the last match criteria

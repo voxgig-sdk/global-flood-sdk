@@ -37,7 +37,7 @@ client = GlobalFloodSDK.new({
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the Flood record (raises on error).
-  flood = client.Flood.load()
+  flood = client.Flood.load({ "latitude" => "example_latitude", "longitude" => "example_longitude" })
   puts flood
 rescue => err
   warn "load failed: #{err}"
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  flood = client.Flood.load()
+  flood = client.Flood.load({ "latitude" => "example", "longitude" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -121,7 +121,7 @@ client = GlobalFloodSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-flood = client.Flood.load()
+flood = client.Flood.load({ "latitude" => "example", "longitude" => "example" })
 puts flood
 ```
 
@@ -284,8 +284,31 @@ Create an instance: `flood = client.Flood`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Flood record (raises on error).
-flood = client.Flood.load()
+flood = client.Flood.load({ "latitude" => "latitude", "longitude" => "longitude" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -365,7 +388,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 flood = client.Flood
-flood.load()
+flood.load({ "latitude" => "example", "longitude" => "example" })
 
 # flood.data_get now returns the flood data from the last load
 # flood.match_get returns the last match criteria

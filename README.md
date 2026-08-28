@@ -14,6 +14,10 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
+> **Features:** `test` — opt-in,
+> inactive until switched on, and configured per client. See the Features
+> section of any SDK README below for what each one does.
+
 ## Entities, not endpoints
 
 This SDK exposes the API as a small set of **semantic entities** — Flood — that you
@@ -23,7 +27,7 @@ support (`load`):
 
 ```ts
 const client = new GlobalFloodSDK()
-const flood = await client.Flood().load()
+const flood = await client.Flood().load({ latitude: "example", longitude: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -47,7 +51,7 @@ const client = GlobalFloodSDK.test({
     },
   },
 })
-const flood = await client.Flood().load()
+const flood = await client.Flood().load({ latitude: 'example_latitude', longitude: 'example_longitude' })
 // flood is the Flood entity, populated with mock data
 // — call flood.data() for the record itself
 console.log(flood)
@@ -57,7 +61,7 @@ console.log(flood)
 
 ```python
 client = GlobalFloodSDK.test()
-flood = client.Flood().load()
+flood = client.Flood().load({"latitude": "example", "longitude": "example"})
 print(flood)
 ```
 
@@ -68,7 +72,7 @@ print(flood)
 $client = GlobalFloodSDK::test([
     "entity" => ["flood" => ["test01" => []]],
 ]);
-$flood = $client->Flood()->load();
+$flood = $client->Flood()->load(["latitude" => "example", "longitude" => "example"]);
 ```
 
 ### Golang
@@ -87,14 +91,14 @@ result, err := client.Flood(nil).Load(
 client = GlobalFloodSDK.test({
   "entity" => { "flood" => { "test01" => {} } },
 })
-flood = client.Flood.load()
+flood = client.Flood.load({ "latitude" => "example", "longitude" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Flood():load()
+local result, err = client:Flood():load({ latitude = "example", longitude = "example" })
 ```
 
 ## Packages
@@ -183,7 +187,7 @@ client = GlobalFloodSDK({
 
 
 # Load a specific flood (returns the record, raises on error)
-flood = client.Flood().load()
+flood = client.Flood().load({"latitude": "example_latitude", "longitude": "example_longitude"})
 print(flood)
 ```
 
@@ -199,7 +203,7 @@ $client = new GlobalFloodSDK([
 
 
 // Load a specific flood (returns the ENTITY; call data_get() for the record; throws on error)
-$flood = $client->Flood()->load();
+$flood = $client->Flood()->load(["latitude" => "example_latitude", "longitude" => "example_longitude"]);
 print_r($flood);
 ```
 
@@ -213,7 +217,7 @@ client := sdk.NewGlobalFloodSDK(map[string]any{
 })
 
 // Load flood data
-flood, err := client.Flood(nil).Load(nil, nil)
+flood, err := client.Flood(nil).Load(map[string]any{"latitude": "example_latitude", "longitude": "example_longitude"}, nil)
 if err != nil {
     panic(err)
 }
@@ -231,7 +235,7 @@ client = GlobalFloodSDK.new({
 
 
 # Load a specific flood (returns the ENTITY; call data_get for the record)
-flood = client.Flood.load()
+flood = client.Flood.load({ "latitude" => "example_latitude", "longitude" => "example_longitude" })
 puts flood
 ```
 
@@ -246,7 +250,7 @@ local client = sdk.new({
 
 
 -- Load a specific flood
-local flood, err = client:Flood():load()
+local flood, err = client:Flood():load({ latitude = "example_latitude", longitude = "example_longitude" })
 print(flood)
 ```
 
@@ -352,6 +356,32 @@ forking the SDK.
 | **TestFeature** | In-memory mock transport for testing without a live server |
 
 Pass custom features via the `extend` option at construction time.
+
+## Customizing this SDK
+
+This repository contains its own generator (`.sdk/`), so the SDK is
+customizable without forking any upstream tool:
+
+- **The model** (`.sdk/model/`) declares everything this project owns:
+  package names, versions, active features, per-target settings. It is
+  written in [aontu](https://github.com/aontu-lang/aontu), a JSON-based
+  specification language designed for building ontologies: easy to edit
+  by hand, and files unify rather than override, so small declarations
+  compose into one model. Regeneration re-reads it every time.
+- **Templates** (`.sdk/tm/`) and **components** (`.sdk/src/cmp/`) are
+  the two layers of generation, copied into this repo: templates are the
+  literal per-language source, components generate the API-shaped parts.
+- **Regeneration merges.** By default, newly generated content is
+  three-way merged into existing files, so generator updates and local
+  edits usually converge without manual conflict handling. A project can
+  opt for plain overwrite instead.
+- **Custom features and entire custom targets** arrive through sdkgen
+  packages (`voxgig-sdkgen package add`), on the same rails as the
+  bundled languages, and `voxgig-sdkgen doctor` reports any drift from
+  what a resync would write.
+
+How-to: [customize and propagate templates](https://github.com/voxgig/sdkgen/blob/main/docs/how-to/customize-and-propagate-templates.md).
+The full story: [voxgig.com/sdk/custom](https://voxgig.com/sdk/custom).
 
 ## Per-language documentation
 

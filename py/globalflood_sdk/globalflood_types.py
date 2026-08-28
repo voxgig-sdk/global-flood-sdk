@@ -27,12 +27,19 @@ class Flood(TypedDict, total=False):
     utc_offset_seconds: int
 
 
-class FloodLoadMatch(TypedDict, total=False):
-    daily: dict
-    daily_units: dict
-    generationtime_ms: float
-    latitude: float
-    longitude: float
+class FloodLoadMatchRequired(TypedDict):
+    latitude: str
+    longitude: str
+
+
+class FloodLoadMatch(FloodLoadMatchRequired, total=False):
+    apikey: str
+    cell_selection: str
+    daily: list
+    end_date: str
+    ensemble: bool
+    forecast_day: int
+    past_day: int
+    start_date: str
+    timeformat: str
     timezone: str
-    timezone_abbreviation: str
-    utc_offset_seconds: int

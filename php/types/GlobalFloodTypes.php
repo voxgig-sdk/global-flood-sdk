@@ -28,13 +28,17 @@ class Flood
 /** Request payload for Flood#load. */
 class FloodLoadMatch
 {
+    public ?string $apikey = null;
+    public ?string $cell_selection = null;
     public ?array $daily = null;
-    public ?array $daily_units = null;
-    public ?float $generationtime_ms = null;
-    public ?float $latitude = null;
-    public ?float $longitude = null;
+    public ?string $end_date = null;
+    public ?bool $ensemble = null;
+    public ?int $forecast_day = null;
+    public string $latitude;
+    public string $longitude;
+    public ?int $past_day = null;
+    public ?string $start_date = null;
+    public ?string $timeformat = null;
     public ?string $timezone = null;
-    public ?string $timezone_abbreviation = null;
-    public ?int $utc_offset_seconds = null;
 }
 

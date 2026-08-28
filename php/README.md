@@ -38,7 +38,7 @@ $client = new GlobalFloodSDK([
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Flood record (throws on error).
-    $flood = $client->Flood()->load();
+    $flood = $client->Flood()->load(["latitude" => "example_latitude", "longitude" => "example_longitude"]);
     print_r($flood);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $flood = $client->Flood()->load();
+    $flood = $client->Flood()->load(["latitude" => "example", "longitude" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -127,7 +127,7 @@ $client = GlobalFloodSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$flood = $client->Flood()->load();
+$flood = $client->Flood()->load(["latitude" => "example", "longitude" => "example"]);
 print_r($flood);
 ```
 
@@ -294,8 +294,31 @@ Create an instance: `$flood = $client->Flood();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Flood record (throws on error).
-$flood = $client->Flood()->load();
+$flood = $client->Flood()->load(["latitude" => "latitude", "longitude" => "longitude"]);
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -375,7 +398,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $flood = $client->Flood();
-$flood->load();
+$flood->load(["latitude" => "example", "longitude" => "example"]);
 
 // $flood->data_get() now returns the flood data from the last load
 // $flood->match_get() returns the last match criteria

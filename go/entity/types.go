@@ -26,14 +26,18 @@ type Flood struct {
 
 // FloodLoadMatch is the typed request payload for Flood.LoadTyped.
 type FloodLoadMatch struct {
-	Daily *map[string]any `json:"daily,omitempty"`
-	DailyUnits *map[string]any `json:"daily_units,omitempty"`
-	GenerationtimeMs *float64 `json:"generationtime_ms,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
+	Apikey *string `json:"apikey,omitempty"`
+	CellSelection *string `json:"cell_selection,omitempty"`
+	Daily *[]any `json:"daily,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
+	Ensemble *bool `json:"ensemble,omitempty"`
+	ForecastDay *int `json:"forecast_day,omitempty"`
+	Latitude string `json:"latitude"`
+	Longitude string `json:"longitude"`
+	PastDay *int `json:"past_day,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
+	Timeformat *string `json:"timeformat,omitempty"`
 	Timezone *string `json:"timezone,omitempty"`
-	TimezoneAbbreviation *string `json:"timezone_abbreviation,omitempty"`
-	UtcOffsetSeconds *int `json:"utc_offset_seconds,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
