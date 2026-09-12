@@ -74,15 +74,17 @@ function flood_direct_setup($mockres)
     $env = Runner::env_override([
         "GLOBAL_FLOOD_TEST_FLOOD_ENTID" => [],
         "GLOBAL_FLOOD_TEST_LIVE" => "FALSE",
-        "GLOBAL_FLOOD_APIKEY" => "NONE",
+        "GLOBAL_FLOOD_APIKEY" => "",
     ]);
 
     $live = $env["GLOBAL_FLOOD_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["GLOBAL_FLOOD_APIKEY"],
-        ];
+        ]);
         $client = new GlobalFloodSDK($merged_opts);
         return [
             "client" => $client,

@@ -45,16 +45,19 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "float",
             ["name"] = "generationtime_ms",
             ["short"] = "Generation time of the forecast in milliseconds",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "float",
             ["name"] = "latitude",
             ["short"] = "WGS84 latitude of the center of the weather grid-cell",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "float",
             ["name"] = "longitude",
             ["short"] = "WGS84 longitude of the center of the weather grid-cell",
             ["type"] = "`$NUMBER`",
@@ -174,9 +177,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/flood",
-                ["parts"] = {
-                  "v1",
-                  "flood",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "flood",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -197,6 +204,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "flood",
                 },
               },
             },

@@ -1,6 +1,14 @@
 # GlobalFlood SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -66,16 +74,19 @@ def make_config():
             "type": "`$OBJECT`",
           },
           {
+            "format": "float",
             "name": "generationtime_ms",
             "short": "Generation time of the forecast in milliseconds",
             "type": "`$NUMBER`",
           },
           {
+            "format": "float",
             "name": "latitude",
             "short": "WGS84 latitude of the center of the weather grid-cell",
             "type": "`$NUMBER`",
           },
           {
+            "format": "float",
             "name": "longitude",
             "short": "WGS84 longitude of the center of the weather grid-cell",
             "type": "`$NUMBER`",
@@ -195,9 +206,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/flood",
-                "parts": [
-                  "v1",
-                  "flood",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "flood",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -219,6 +234,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "flood",
+                ],
               },
             ],
           },

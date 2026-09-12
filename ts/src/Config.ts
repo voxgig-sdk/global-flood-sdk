@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -81,16 +92,19 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "float",
           "name": "generationtime_ms",
           "short": "Generation time of the forecast in milliseconds",
           "type": "`$NUMBER`"
         },
         {
+          "format": "float",
           "name": "latitude",
           "short": "WGS84 latitude of the center of the weather grid-cell",
           "type": "`$NUMBER`"
         },
         {
+          "format": "float",
           "name": "longitude",
           "short": "WGS84 longitude of the center of the weather grid-cell",
           "type": "`$NUMBER`"
@@ -210,9 +224,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/flood",
-              "parts": [
-                "v1",
-                "flood"
+              "segments": [
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "flood"
+                }
               ],
               "select": {
                 "exist": [
@@ -233,7 +251,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "v1",
+                "flood"
+              ]
             }
           ]
         }
@@ -249,6 +271,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

@@ -18,18 +18,21 @@ main: kit: entity: flood: {
       type: "`$OBJECT`"
     }
     {
+      format: "float"
       name: "generationtime_ms"
       req: false
       short: "Generation time of the forecast in milliseconds"
       type: "`$NUMBER`"
     }
     {
+      format: "float"
       name: "latitude"
       req: false
       short: "WGS84 latitude of the center of the weather grid-cell"
       type: "`$NUMBER`"
     }
     {
+      format: "float"
       name: "longitude"
       req: false
       short: "WGS84 longitude of the center of the weather grid-cell"
@@ -162,9 +165,13 @@ main: kit: entity: flood: {
           }
           method: "GET"
           orig: "/v1/flood"
-          parts: [
-            "v1"
-            "flood"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "flood"
+            }
           ]
           select: {
             exist: [

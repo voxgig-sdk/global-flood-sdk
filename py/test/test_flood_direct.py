@@ -64,15 +64,18 @@ def _flood_direct_setup(mockres):
     env = runner.env_override({
         "GLOBAL_FLOOD_TEST_FLOOD_ENTID": {},
         "GLOBAL_FLOOD_TEST_LIVE": "FALSE",
-        "GLOBAL_FLOOD_APIKEY": "NONE",
+        "GLOBAL_FLOOD_APIKEY": "",
     })
 
     live = env.get("GLOBAL_FLOOD_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("GLOBAL_FLOOD_APIKEY"),
-        }
+        })
         client = GlobalFloodSDK(merged_opts)
         return {
             "client": client,
