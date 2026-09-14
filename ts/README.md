@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { GlobalFloodSDK } from '@voxgig-sdk/global-flood'
+import { GlobalFloodSDK } from '@voxgig-sdk/global-flood-sdk'
 
 const client = new GlobalFloodSDK({
   apikey: process.env.GLOBAL_FLOOD_APIKEY,
@@ -421,7 +421,7 @@ global-flood/
 Import the SDK from the package root:
 
 ```ts
-import { GlobalFloodSDK } from '@voxgig-sdk/global-flood'
+import { GlobalFloodSDK } from '@voxgig-sdk/global-flood-sdk'
 ```
 
 ### Entity state

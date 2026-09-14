@@ -105,7 +105,7 @@ local result, err = client:Flood():load({ latitude = "example", longitude = "exa
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
+| TypeScript | `@voxgig-sdk/global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
 | Python | `voxgig-sdk-global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
 | PHP | `voxgig-sdk/global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/global-flood-sdk/go` | `go get github.com/voxgig-sdk/global-flood-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Flood():load({ latitude = "example", longitude = "exa
 ### TypeScript
 
 ```ts
-import { GlobalFloodSDK } from '@voxgig-sdk/global-flood'
+import { GlobalFloodSDK } from '@voxgig-sdk/global-flood-sdk'
 
 const client = new GlobalFloodSDK({
   apikey: process.env.GLOBAL_FLOOD_APIKEY,
