@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "flood": {
           "active": true,
@@ -211,6 +275,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /v1/flood",
+                    "json": "{\"operationId\":\"getFloodData\",\"parameters\":[{\"description\":\"Latitude (WGS84) of the location. Multiple coordinates can be comma separated (e.g., 52.52,48.85).\",\"example\":\"59.9\",\"in\":\"query\",\"name\":\"latitude\",\"required\":true,\"schema\":{\"pattern\":\"^-?\\\\d+\\\\.?\\\\d*(,-?\\\\d+\\\\.?\\\\d*)*$\",\"type\":\"string\"}},{\"description\":\"Longitude (WGS84) of the location. Multiple coordinates can be comma separated (e.g., 13.41,2.35).\",\"example\":\"10.75\",\"in\":\"query\",\"name\":\"longitude\",\"required\":true,\"schema\":{\"pattern\":\"^-?\\\\d+\\\\.?\\\\d*(,-?\\\\d+\\\\.?\\\\d*)*$\",\"type\":\"string\"}},{\"description\":\"Daily flood variables to return. Can be comma separated or multiple daily parameters.\",\"example\":\"river_discharge\",\"explode\":false,\"in\":\"query\",\"name\":\"daily\",\"required\":false,\"schema\":{\"items\":{\"enum\":[\"river_discharge\",\"river_discharge_mean\",\"river_discharge_median\",\"river_discharge_max\",\"river_discharge_min\",\"river_discharge_p25\",\"river_discharge_p75\"],\"type\":\"string\"},\"type\":\"array\"},\"style\":\"form\"},{\"description\":\"Time format for returned data. Use 'unixtime' for UNIX epoch time in seconds (GMT+0) or 'iso8601' for ISO8601 format.\",\"in\":\"query\",\"name\":\"timeformat\",\"required\":false,\"schema\":{\"default\":\"iso8601\",\"enum\":[\"iso8601\",\"unixtime\"],\"type\":\"string\"}},{\"description\":\"Number of past days to include in the response.\",\"in\":\"query\",\"name\":\"past_days\",\"required\":false,\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Number of forecast days to return. Maximum 210 days.\",\"in\":\"query\",\"name\":\"forecast_days\",\"required\":false,\"schema\":{\"default\":92,\"maximum\":210,\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Start date for the time interval (ISO8601 format: yyyy-mm-dd). Data available from 1984-01-01.\",\"example\":\"2022-06-30\",\"in\":\"query\",\"name\":\"start_date\",\"required\":false,\"schema\":{\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"End date for the time interval (ISO8601 format: yyyy-mm-dd).\",\"example\":\"2022-07-30\",\"in\":\"query\",\"name\":\"end_date\",\"required\":false,\"schema\":{\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"If true, all forecast ensemble members will be returned.\",\"in\":\"query\",\"name\":\"ensemble\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"Preference for grid-cell selection. 'land' finds suitable grid-cell on land with similar elevation, 'sea' prefers grid-cells on sea, 'nearest' selects the nearest grid-cell.\",\"in\":\"query\",\"name\":\"cell_selection\",\"required\":false,\"schema\":{\"default\":\"nearest\",\"enum\":[\"land\",\"sea\",\"nearest\"],\"type\":\"string\"}},{\"description\":\"Timezone for time values. If not set, GMT+0 is used.\",\"example\":\"Europe/Berlin\",\"in\":\"query\",\"name\":\"timezone\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"API key for commercial use to access reserved API resources. Required when using the customer- server prefix.\",\"in\":\"query\",\"name\":\"apikey\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"daily\":{\"river_discharge\":[8.04,8.75,8.93],\"time\":[\"2025-03-03\",\"2025-03-04\",\"2025-03-05\"]},\"daily_units\":{\"river_discharge\":\"m³/s\"},\"generationtime_ms\":0.0627040863037109,\"latitude\":59.9,\"longitude\":10.75,\"timezone\":\"GMT\",\"timezone_abbreviation\":\"GMT\",\"utc_offset_seconds\":0},\"schema\":{\"properties\":{\"daily\":{\"description\":\"Daily flood data\",\"properties\":{\"river_discharge\":{\"description\":\"Daily river discharge rate in m³/s\",\"items\":{\"format\":\"float\",\"type\":\"number\"},\"type\":\"array\"},\"river_discharge_max\":{\"description\":\"Maximum river discharge rate from ensemble members in m³/s\",\"items\":{\"format\":\"float\",\"type\":\"number\"},\"type\":\"array\"},\"river_discharge_mean\":{\"description\":\"Mean river discharge rate from ensemble members in m³/s\",\"items\":{\"format\":\"float\",\"type\":\"number\"},\"type\":\"array\"},\"river_discharge_median\":{\"description\":\"Median river discharge rate from ensemble members in m³/s\",\"items\":{\"format\":\"float\",\"type\":\"number\"},\"type\":\"array\"},\"river_discharge_min\":{\"description\":\"Minimum river discharge rate from ensemble members in m³/s\",\"items\":{\"format\":\"float\",\"type\":\"number\"},\"type\":\"array\"},\"river_discharge_p25\":{\"description\":\"25th percentile river discharge rate from ensemble members in m³/s\",\"items\":{\"format\":\"float\",\"type\":\"number\"},\"type\":\"array\"},\"river_discharge_p75\":{\"description\":\"75th percentile river discharge rate from ensemble members in m³/s\",\"items\":{\"format\":\"float\",\"type\":\"number\"},\"type\":\"array\"},\"time\":{\"description\":\"Array of ISO8601 timestamps or UNIX epoch times\",\"items\":{\"format\":\"date\",\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"daily_units\":{\"additionalProperties\":{\"type\":\"string\"},\"description\":\"Units for each daily variable\",\"type\":\"object\"},\"generationtime_ms\":{\"description\":\"Generation time of the forecast in milliseconds\",\"format\":\"float\",\"type\":\"number\"},\"latitude\":{\"description\":\"WGS84 latitude of the center of the weather grid-cell\",\"format\":\"float\",\"type\":\"number\"},\"longitude\":{\"description\":\"WGS84 longitude of the center of the weather grid-cell\",\"format\":\"float\",\"type\":\"number\"},\"timezone\":{\"description\":\"Timezone identifier\",\"type\":\"string\"},\"timezone_abbreviation\":{\"description\":\"Timezone abbreviation\",\"type\":\"string\"},\"utc_offset_seconds\":{\"description\":\"UTC offset in seconds\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with flood data\"},\"400\":{\"content\":{\"application/json\":{\"example\":{\"error\":true,\"reason\":\"Cannot initialize WeatherVariable from invalid String value river_discharge for key daily\"},\"schema\":{\"properties\":{\"error\":{\"description\":\"Indicates an error occurred\",\"type\":\"boolean\"},\"reason\":{\"description\":\"Description of the error\",\"type\":\"string\"}},\"required\":[\"error\",\"reason\"],\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for commercial use\",\"in\":\"query\",\"name\":\"apikey\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/flood",
@@ -252,13 +322,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -349,6 +629,102 @@
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
           "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
+          "version": "0.0.1"
         }
       },
       "flow": {
@@ -417,6 +793,48 @@
         "website": "https://open-meteo.com/en/docs/flood-api"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -971,6 +1389,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1012,7 +1431,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

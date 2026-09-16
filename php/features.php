@@ -4,7 +4,10 @@ declare(strict_types=1);
 // GlobalFlood SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class GlobalFloodFeatures
@@ -14,8 +17,14 @@ class GlobalFloodFeatures
         switch ($name) {
             case "base":
                 return new GlobalFloodBaseFeature();
+            case "ratelimit":
+                return new GlobalFloodRatelimitFeature();
+            case "retry":
+                return new GlobalFloodRetryFeature();
             case "test":
                 return new GlobalFloodTestFeature();
+            case "timeout":
+                return new GlobalFloodTimeoutFeature();
             default:
                 return new GlobalFloodBaseFeature();
         }
@@ -31,7 +40,10 @@ class GlobalFloodFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
