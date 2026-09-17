@@ -105,12 +105,12 @@ local result, err = client:Flood():load({ latitude = "example", longitude = "exa
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
-| Python | `voxgig-sdk-global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
-| PHP | `voxgig-sdk/global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
+| TypeScript | `@voxgig-sdk/global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
+| Python | `voxgig-sdk-global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
+| PHP | `voxgig-sdk/global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/global-flood-sdk/go` | `go get github.com/voxgig-sdk/global-flood-sdk/go@latest` |
-| Ruby | `voxgig-sdk-global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
-| Lua | `voxgig-sdk-global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/releases) |
+| Ruby | `voxgig-sdk-global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
+| Lua | `voxgig-sdk-global-flood` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/global-flood-sdk/go-cli` | `go install github.com/voxgig-sdk/global-flood-sdk/go-cli/cmd/global-flood@latest` |
 | Go MCP server | `github.com/voxgig-sdk/global-flood-sdk/go-mcp` | `go get github.com/voxgig-sdk/global-flood-sdk/go-mcp@latest` |
 
