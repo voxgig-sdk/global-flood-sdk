@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -145,46 +138,54 @@ class Config {
       "fields": [
         {
           "name": "daily",
-          "short": "Daily flood data",
-          "type": "`$OBJECT`"
+          "title": "Daily",
+          "type": "`$OBJECT`",
+          "short": "Daily flood data"
         },
         {
           "name": "daily_units",
-          "short": "Units for each daily variable",
-          "type": "`$OBJECT`"
+          "title": "Daily Units",
+          "type": "`$OBJECT`",
+          "short": "Units for each daily variable"
         },
         {
-          "format": "float",
           "name": "generationtime_ms",
+          "title": "Generationtime Ms",
+          "type": "`$NUMBER`",
           "short": "Generation time of the forecast in milliseconds",
-          "type": "`$NUMBER`"
+          "format": "float"
         },
         {
-          "format": "float",
           "name": "latitude",
+          "title": "Latitude",
+          "type": "`$NUMBER`",
           "short": "WGS84 latitude of the center of the weather grid-cell",
-          "type": "`$NUMBER`"
+          "format": "float"
         },
         {
-          "format": "float",
           "name": "longitude",
+          "title": "Longitude",
+          "type": "`$NUMBER`",
           "short": "WGS84 longitude of the center of the weather grid-cell",
-          "type": "`$NUMBER`"
+          "format": "float"
         },
         {
           "name": "timezone",
-          "short": "Timezone identifier",
-          "type": "`$STRING`"
+          "title": "Timezone",
+          "type": "`$STRING`",
+          "short": "Timezone identifier"
         },
         {
           "name": "timezone_abbreviation",
-          "short": "Timezone abbreviation",
-          "type": "`$STRING`"
+          "title": "Timezone Abbreviation",
+          "type": "`$STRING`",
+          "short": "Timezone abbreviation"
         },
         {
           "name": "utc_offset_seconds",
-          "short": "UTC offset in seconds",
-          "type": "`$INTEGER`"
+          "title": "Utc Offset Seconds",
+          "type": "`$INTEGER`",
+          "short": "UTC offset in seconds"
         }
       ],
       "name": "flood",
@@ -194,95 +195,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "apikey",
-                    "orig": "apikey",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "nearest",
-                    "kind": "query",
-                    "name": "cell_selection",
-                    "orig": "cell_selection",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "river_discharge",
-                    "kind": "query",
-                    "name": "daily",
-                    "orig": "daily",
-                    "type": "`$ARRAY`"
-                  },
-                  {
-                    "example": "2022-07-30",
-                    "kind": "query",
-                    "name": "end_date",
-                    "orig": "end_date",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": false,
-                    "kind": "query",
-                    "name": "ensemble",
-                    "orig": "ensemble",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "example": 92,
-                    "kind": "query",
-                    "name": "forecast_day",
-                    "orig": "forecast_day",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": "59.9",
-                    "kind": "query",
-                    "name": "latitude",
-                    "orig": "latitude",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "10.75",
-                    "kind": "query",
-                    "name": "longitude",
-                    "orig": "longitude",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 0,
-                    "kind": "query",
-                    "name": "past_day",
-                    "orig": "past_day",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": "2022-06-30",
-                    "kind": "query",
-                    "name": "start_date",
-                    "orig": "start_date",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "iso8601",
-                    "kind": "query",
-                    "name": "timeformat",
-                    "orig": "timeformat",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "Europe/Berlin",
-                    "kind": "query",
-                    "name": "timezone",
-                    "orig": "timezone",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/flood",
@@ -294,6 +206,104 @@ class Config {
                   "lit": "flood"
                 }
               ],
+              "parts": [
+                "v1",
+                "flood"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "apikey",
+                    "orig": "apikey",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "cell_selection",
+                    "orig": "cell_selection",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "nearest"
+                  },
+                  {
+                    "name": "daily",
+                    "orig": "daily",
+                    "type": "`$ARRAY`",
+                    "kind": "query",
+                    "example": "river_discharge"
+                  },
+                  {
+                    "name": "end_date",
+                    "orig": "end_date",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "2022-07-30"
+                  },
+                  {
+                    "name": "ensemble",
+                    "orig": "ensemble",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query",
+                    "example": false
+                  },
+                  {
+                    "name": "forecast_day",
+                    "orig": "forecast_day",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 92
+                  },
+                  {
+                    "name": "latitude",
+                    "orig": "latitude",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "59.9"
+                  },
+                  {
+                    "name": "longitude",
+                    "orig": "longitude",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "10.75"
+                  },
+                  {
+                    "name": "past_day",
+                    "orig": "past_day",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 0
+                  },
+                  {
+                    "name": "start_date",
+                    "orig": "start_date",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "2022-06-30"
+                  },
+                  {
+                    "name": "timeformat",
+                    "orig": "timeformat",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "iso8601"
+                  },
+                  {
+                    "name": "timezone",
+                    "orig": "timezone",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "Europe/Berlin"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "apikey",
@@ -309,15 +319,7 @@ class Config {
                   "timeformat",
                   "timezone"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "v1",
-                "flood"
-              ]
+              }
             }
           ]
         }

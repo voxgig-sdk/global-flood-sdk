@@ -1,7 +1,7 @@
 // Typed models for the GlobalFlood SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,14 +14,6 @@ import (
 
 // Flood is the typed data model for the flood entity.
 type Flood struct {
-	Daily *map[string]any `json:"daily,omitempty"`
-	DailyUnits *map[string]any `json:"daily_units,omitempty"`
-	GenerationtimeMs *float64 `json:"generationtime_ms,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Timezone *string `json:"timezone,omitempty"`
-	TimezoneAbbreviation *string `json:"timezone_abbreviation,omitempty"`
-	UtcOffsetSeconds *int `json:"utc_offset_seconds,omitempty"`
 }
 
 // FloodLoadMatch is the typed request payload for Flood.LoadTyped.

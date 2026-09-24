@@ -1,0 +1,216 @@
+# Entity: flood
+
+main: kit: entity: flood: {
+
+  alias: field: {}
+
+  fields: {
+    daily: {
+      h: "Daily"
+      n: "daily"
+      r: false
+      sh: "Daily flood data"
+      t: "`$OBJECT`"
+    }
+    daily_units: {
+      h: "Daily Units"
+      n: "daily_units"
+      r: false
+      sh: "Units for each daily variable"
+      t: "`$OBJECT`"
+    }
+    generationtime_ms: {
+      fo: "float"
+      h: "Generationtime Ms"
+      n: "generationtime_ms"
+      r: false
+      sh: "Generation time of the forecast in milliseconds"
+      t: "`$NUMBER`"
+    }
+    latitude: {
+      fo: "float"
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "WGS84 latitude of the center of the weather grid-cell"
+      t: "`$NUMBER`"
+    }
+    longitude: {
+      fo: "float"
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "WGS84 longitude of the center of the weather grid-cell"
+      t: "`$NUMBER`"
+    }
+    timezone: {
+      h: "Timezone"
+      n: "timezone"
+      r: false
+      sh: "Timezone identifier"
+      t: "`$STRING`"
+    }
+    timezone_abbreviation: {
+      h: "Timezone Abbreviation"
+      n: "timezone_abbreviation"
+      r: false
+      sh: "Timezone abbreviation"
+      t: "`$STRING`"
+    }
+    utc_offset_seconds: {
+      h: "Utc Offset Seconds"
+      n: "utc_offset_seconds"
+      r: false
+      sh: "UTC offset in seconds"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "flood"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v1/flood"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "apikey"
+                or: "apikey"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "nearest"
+                k: "query"
+                n: "cell_selection"
+                or: "cell_selection"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "river_discharge"
+                k: "query"
+                n: "daily"
+                or: "daily"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "2022-07-30"
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "ensemble"
+                or: "ensemble"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 92
+                k: "query"
+                n: "forecast_day"
+                or: "forecast_day"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "59.9"
+                k: "query"
+                n: "latitude"
+                or: "latitude"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "10.75"
+                k: "query"
+                n: "longitude"
+                or: "longitude"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "past_day"
+                or: "past_day"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "2022-06-30"
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "iso8601"
+                k: "query"
+                n: "timeformat"
+                or: "timeformat"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "Europe/Berlin"
+                k: "query"
+                n: "timezone"
+                or: "timezone"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/flood"
+          q: {
+            exist: [
+              "apikey"
+              "cell_selection"
+              "daily"
+              "end_date"
+              "ensemble"
+              "forecast_day"
+              "latitude"
+              "longitude"
+              "past_day"
+              "start_date"
+              "timeformat"
+              "timezone"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "flood"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
