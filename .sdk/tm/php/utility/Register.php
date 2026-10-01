@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 GlobalFloodUtility::setRegistrar(function (GlobalFloodUtility $u): void {
     $u->clean = [GlobalFloodClean::class, 'call'];
+    $u->clean_add = [GlobalFloodClean::class, 'add'];
+    $u->clean_explain = [GlobalFloodDone::class, 'clean_explain'];
     $u->done = [GlobalFloodDone::class, 'call'];
     $u->make_error = [GlobalFloodMakeError::class, 'call'];
     $u->feature_add = [GlobalFloodFeatureAdd::class, 'call'];

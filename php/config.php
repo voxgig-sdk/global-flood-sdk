@@ -233,7 +233,7 @@ class GlobalFloodConfig
                       ],
                       [
                         'name' => 'forecast_day',
-                        'orig' => 'forecast_day',
+                        'orig' => 'forecast_days',
                         'type' => '`$INTEGER`',
                         'kind' => 'query',
                         'example' => 92,
@@ -256,7 +256,7 @@ class GlobalFloodConfig
                       ],
                       [
                         'name' => 'past_day',
-                        'orig' => 'past_day',
+                        'orig' => 'past_days',
                         'type' => '`$INTEGER`',
                         'kind' => 'query',
                         'example' => 0,

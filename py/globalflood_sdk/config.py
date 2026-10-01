@@ -236,7 +236,7 @@ def make_config():
                     },
                     {
                       "name": "forecast_day",
-                      "orig": "forecast_day",
+                      "orig": "forecast_days",
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 92,
@@ -259,7 +259,7 @@ def make_config():
                     },
                     {
                       "name": "past_day",
-                      "orig": "past_day",
+                      "orig": "past_days",
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 0,

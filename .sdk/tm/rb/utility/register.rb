@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 GlobalFloodUtility.registrar = ->(u) {
   u.clean = GlobalFloodUtilities::Clean
+  u.clean_add = GlobalFloodUtilities::CleanAdd
+  u.clean_explain = GlobalFloodUtilities::CleanExplain
   u.done = GlobalFloodUtilities::Done
   u.make_error = GlobalFloodUtilities::MakeError
   u.feature_add = GlobalFloodUtilities::FeatureAdd

@@ -229,7 +229,7 @@
                         "ex": 92,
                         "k": "query",
                         "n": "forecast_day",
-                        "or": "forecast_day",
+                        "or": "forecast_days",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -256,7 +256,7 @@
                         "ex": 0,
                         "k": "query",
                         "n": "past_day",
-                        "or": "past_day",
+                        "or": "past_days",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -820,7 +820,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

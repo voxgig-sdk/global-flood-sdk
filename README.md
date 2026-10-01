@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
+> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -105,12 +105,12 @@ local result, err = client:Flood():load({ latitude = "example", longitude = "exa
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
-| Python | `voxgig-sdk-global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
-| PHP | `voxgig-sdk/global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
+| TypeScript | `@voxgig-sdk/global-flood-sdk` | publish pending — [install from source](ts/README.md#install) |
+| Python | `voxgig-sdk-global-flood-sdk` | publish pending — [install from source](py/README.md#install) |
+| PHP | `voxgig-sdk/global-flood-sdk` | publish pending — [install from source](php/README.md#install) |
 | Golang | `github.com/voxgig-sdk/global-flood-sdk/go` | `go get github.com/voxgig-sdk/global-flood-sdk/go@latest` |
-| Ruby | `voxgig-sdk-global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
-| Lua | `voxgig-sdk-global-flood-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-flood-sdk/tags) |
+| Ruby | `voxgig-sdk-global-flood-sdk` | publish pending — [install from source](rb/README.md#install) |
+| Lua | `voxgig-sdk-global-flood-sdk` | publish pending — [install from source](lua/README.md#install) |
 | Go CLI | `github.com/voxgig-sdk/global-flood-sdk/go-cli` | `go install github.com/voxgig-sdk/global-flood-sdk/go-cli/cmd/global-flood@latest` |
 | Go MCP server | `github.com/voxgig-sdk/global-flood-sdk/go-mcp` | `go get github.com/voxgig-sdk/global-flood-sdk/go-mcp@latest` |
 
