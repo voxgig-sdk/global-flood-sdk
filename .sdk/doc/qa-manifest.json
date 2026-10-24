@@ -3,5 +3,19 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API key for commercial use",
+      "Commercial API with reserved resources",
+      "Daily flood data",
+      "Generation time of the forecast in milliseconds",
+      "Global Flood API",
+      "Simulated river discharge at 5 km resolution from 1984 up to 7 months forecast. This API uses reanalysis and forecast data from the Global Flood Awareness System (GloFAS).",
+      "Successful response with flood data",
+      "Units for each daily variable",
+      "WGS84 latitude of the center of the weather grid-cell",
+      "WGS84 longitude of the center of the weather grid-cell"
+    ]
+  }
 }

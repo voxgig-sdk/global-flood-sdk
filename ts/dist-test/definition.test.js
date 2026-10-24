@@ -16,20 +16,24 @@ const PLAN = [
         "path": "/v1/flood",
         "args": [],
         "select": {
+            "latitude": "59.9",
+            "longitude": "10.75",
             "apikey": "v1",
-            "cell_selection": "v1",
+            "cell_selection": "nearest",
             "daily": "river_discharge",
             "end_date": "2022-07-30",
             "ensemble": "v1",
-            "forecast_day": "v1",
-            "latitude": "59.9",
-            "longitude": "10.75",
-            "past_day": "v1",
+            "forecast_day": 92,
+            "past_day": 0,
             "start_date": "2022-06-30",
-            "timeformat": "v1",
+            "timeformat": "iso8601",
             "timezone": "Europe/Berlin"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "latitude",
             "longitude",
@@ -43,6 +47,56 @@ const PLAN = [
             "cell_selection",
             "timezone",
             "apikey"
+        ],
+        "queryArgs": [
+            {
+                "name": "apikey",
+                "wire": "apikey"
+            },
+            {
+                "name": "cell_selection",
+                "wire": "cell_selection"
+            },
+            {
+                "name": "daily",
+                "wire": "daily"
+            },
+            {
+                "name": "end_date",
+                "wire": "end_date"
+            },
+            {
+                "name": "ensemble",
+                "wire": "ensemble"
+            },
+            {
+                "name": "forecast_day",
+                "wire": "forecast_days"
+            },
+            {
+                "name": "latitude",
+                "wire": "latitude"
+            },
+            {
+                "name": "longitude",
+                "wire": "longitude"
+            },
+            {
+                "name": "past_day",
+                "wire": "past_days"
+            },
+            {
+                "name": "start_date",
+                "wire": "start_date"
+            },
+            {
+                "name": "timeformat",
+                "wire": "timeformat"
+            },
+            {
+                "name": "timezone",
+                "wire": "timezone"
+            }
         ],
         "auth": [],
         "status": 200,
@@ -69,7 +123,8 @@ const PLAN = [
                 ]
             }
         },
-        "idField": "id"
+        "idField": "id",
+        "ownQuery": "apikey"
     }
 ];
 (0, node_test_1.describe)('definition', () => {

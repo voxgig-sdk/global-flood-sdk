@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -209,7 +210,8 @@ class Config {
                                         "orig": "daily",
                                         "type": "`$ARRAY`",
                                         "kind": "query",
-                                        "example": "river_discharge"
+                                        "example": "river_discharge",
+                                        "field": true
                                     },
                                     {
                                         "name": "end_date",
@@ -238,7 +240,8 @@ class Config {
                                         "type": "`$STRING`",
                                         "kind": "query",
                                         "reqd": true,
-                                        "example": "59.9"
+                                        "example": "59.9",
+                                        "field": true
                                     },
                                     {
                                         "name": "longitude",
@@ -246,7 +249,8 @@ class Config {
                                         "type": "`$STRING`",
                                         "kind": "query",
                                         "reqd": true,
-                                        "example": "10.75"
+                                        "example": "10.75",
+                                        "field": true
                                     },
                                     {
                                         "name": "past_day",
@@ -274,25 +278,20 @@ class Config {
                                         "orig": "timezone",
                                         "type": "`$STRING`",
                                         "kind": "query",
-                                        "example": "Europe/Berlin"
+                                        "example": "Europe/Berlin",
+                                        "field": true
                                     }
                                 ]
                             },
                             "select": {
                                 "exist": [
-                                    "apikey",
-                                    "cell_selection",
-                                    "daily",
-                                    "end_date",
-                                    "ensemble",
-                                    "forecast_day",
                                     "latitude",
-                                    "longitude",
-                                    "past_day",
-                                    "start_date",
-                                    "timeformat",
-                                    "timezone"
+                                    "longitude"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]

@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -190,6 +191,7 @@ local function make_config()
                       ["type"] = "`$ARRAY`",
                       ["kind"] = "query",
                       ["example"] = "river_discharge",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "end_date",
@@ -219,6 +221,7 @@ local function make_config()
                       ["kind"] = "query",
                       ["reqd"] = true,
                       ["example"] = "59.9",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "longitude",
@@ -227,6 +230,7 @@ local function make_config()
                       ["kind"] = "query",
                       ["reqd"] = true,
                       ["example"] = "10.75",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "past_day",
@@ -255,24 +259,19 @@ local function make_config()
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["example"] = "Europe/Berlin",
+                      ["field"] = true,
                     },
                   },
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "apikey",
-                    "cell_selection",
-                    "daily",
-                    "end_date",
-                    "ensemble",
-                    "forecast_day",
                     "latitude",
                     "longitude",
-                    "past_day",
-                    "start_date",
-                    "timeformat",
-                    "timezone",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },

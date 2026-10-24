@@ -52,9 +52,8 @@ const client = GlobalFloodSDK.test({
   },
 })
 const flood = await client.Flood().load({ latitude: 'example_latitude', longitude: 'example_longitude' })
-// flood is the Flood entity, populated with mock data
-// — call flood.data() for the record itself
-console.log(flood)
+// flood is the Flood entity; .data() reads its mock record
+console.log(flood.data())
 ```
 
 ### Python
@@ -62,7 +61,7 @@ console.log(flood)
 ```python
 client = GlobalFloodSDK.test()
 flood = client.Flood().load({"latitude": "example", "longitude": "example"})
-print(flood)
+print(flood.data_get())
 ```
 
 ### PHP
@@ -80,7 +79,7 @@ $flood = $client->Flood()->load(["latitude" => "example", "longitude" => "exampl
 ```go
 client := sdk.Test()
 result, err := client.Flood(nil).Load(
-    nil, nil,
+    map[string]any{"latitude": "example", "longitude": "example"}, nil,
 )
 ```
 
@@ -111,8 +110,8 @@ local result, err = client:Flood():load({ latitude = "example", longitude = "exa
 | Golang | `github.com/voxgig-sdk/global-flood-sdk/go` | `go get github.com/voxgig-sdk/global-flood-sdk/go@latest` |
 | Ruby | `voxgig-sdk-global-flood-sdk` | publish pending — [install from source](rb/README.md#install) |
 | Lua | `voxgig-sdk-global-flood-sdk` | publish pending — [install from source](lua/README.md#install) |
-| Go CLI | `github.com/voxgig-sdk/global-flood-sdk/go-cli` | `go install github.com/voxgig-sdk/global-flood-sdk/go-cli/cmd/global-flood@latest` |
-| Go MCP server | `github.com/voxgig-sdk/global-flood-sdk/go-mcp` | `go get github.com/voxgig-sdk/global-flood-sdk/go-mcp@latest` |
+| Go CLI | `github.com/voxgig-sdk/global-flood-sdk/go-cli` | build from source — [go-cli/README.md](go-cli/README.md) |
+| Go MCP server | `github.com/voxgig-sdk/global-flood-sdk/go-mcp` | build from source — [go-mcp/README.md](go-mcp/README.md) |
 
 ## Quickstart
 
@@ -125,10 +124,15 @@ const client = new GlobalFloodSDK({
   apikey: process.env.GLOBAL_FLOOD_APIKEY,
 })
 
-// Load flood data (returns a Flood)
-const flood = await client.Flood().load()
-console.log(flood)
+// Load a specific flood (returns the entity, a FloodEntity)
+const flood = await client.Flood().load({
+  latitude: 'example_latitude',
+  longitude: 'example_longitude',
+})
+console.log(flood.data())
 ```
+
+The client sends the API key as the `apikey` query parameter.
 
 See the [TypeScript README](ts/README.md) for the full guide.
 
@@ -142,9 +146,10 @@ See the [TypeScript README](ts/README.md) for the full guide.
 
 ## Use it from an AI agent (MCP)
 
-The generated MCP server exposes every operation in this SDK as an
-[MCP](https://modelcontextprotocol.io) tool that Claude, Cursor or Cline
-can call directly. Build and register it:
+The generated MCP server exposes this SDK's load operations as
+[MCP](https://modelcontextprotocol.io) tools that Claude, Cursor or Cline
+can call directly. It only reads: create, update, patch and remove become tools when the SDK's model sets
+`main: kit: target: 'go-mcp': tool: write: true`. Build and register it:
 
 ```bash
 cd go-mcp && go build -o global-flood-mcp .
@@ -186,9 +191,9 @@ client = GlobalFloodSDK({
 })
 
 
-# Load a specific flood (returns the record, raises on error)
+# Load a specific flood (returns the entity, raises on error)
 flood = client.Flood().load({"latitude": "example_latitude", "longitude": "example_longitude"})
-print(flood)
+print(flood.data_get())
 ```
 
 ### PHP
@@ -202,7 +207,7 @@ $client = new GlobalFloodSDK([
 ]);
 
 
-// Load a specific flood (returns the ENTITY; call data_get() for the record; throws on error)
+// Load a specific flood (returns the entity; data_get() reads its record; throws on error)
 $flood = $client->Flood()->load(["latitude" => "example_latitude", "longitude" => "example_longitude"]);
 print_r($flood->data_get());
 ```
@@ -216,12 +221,12 @@ client := sdk.NewGlobalFloodSDK(map[string]any{
     "apikey": os.Getenv("GLOBAL_FLOOD_APIKEY"),
 })
 
-// Load flood data
+// Load a specific flood (returns the entity; err is non-nil on failure)
 flood, err := client.Flood(nil).Load(map[string]any{"latitude": "example_latitude", "longitude": "example_longitude"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(flood)
+fmt.Println(flood.(sdk.Entity).Data())
 ```
 
 ### Ruby
@@ -234,24 +239,26 @@ client = GlobalFloodSDK.new({
 })
 
 
-# Load a specific flood (returns the ENTITY; call data_get for the record)
+# Load a specific flood (returns the entity; data_get reads its record; raises on error)
 flood = client.Flood.load({ "latitude" => "example_latitude", "longitude" => "example_longitude" })
-puts flood
+puts flood.data_get
 ```
 
 ### Lua
 
 ```lua
 local sdk = require("global-flood_sdk")
+local json = require("dkjson")
 
 local client = sdk.new({
   apikey = os.getenv("GLOBAL_FLOOD_APIKEY"),
 })
 
 
--- Load a specific flood
+-- Load a specific flood (returns the entity; err on failure)
 local flood, err = client:Flood():load({ latitude = "example_latitude", longitude = "example_longitude" })
-print(flood)
+if err then error(err) end
+print(json.encode(flood:data_get()))
 ```
 
 ## Direct and prepare
@@ -277,10 +284,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
-if (result instanceof Error) {
-  throw result
+if (result.ok) {
+  console.log(result.data)
 }
-console.log(result.data)
 ```
 
 **Python:**
@@ -365,23 +371,52 @@ Pass custom features via the `extend` option at construction time.
 This repository contains its own generator (`.sdk/`), so the SDK is
 customizable without forking any upstream tool:
 
-- **The model** (`.sdk/model/`) declares everything this project owns:
-  package names, versions, active features, per-target settings. It is
-  written in [aontu](https://aontu.dev), a JSON-based
+- **The model** (`.sdk/model/`) is what generation reads: the API's
+  entities and operations, the targets, the features, and this project's
+  own settings. It is written in [aontu](https://aontu.dev), a JSON-based
   specification language designed for building ontologies: easy to edit
   by hand, and files unify rather than override, so small declarations
   compose into one model. Regeneration re-reads it every time.
 - **Templates** (`.sdk/tm/`) and **components** (`.sdk/src/cmp/`) are
   the two layers of generation, copied into this repo: templates are the
   literal per-language source, components generate the API-shaped parts.
-- **Regeneration merges.** By default, newly generated content is
-  three-way merged into existing files, so generator updates and local
-  edits usually converge without manual conflict handling. A project can
-  opt for plain overwrite instead.
+- **Regeneration overwrites.** Each run rewrites every generated file from
+  the model, the templates and the components, so an edit made to
+  generated output is lost. Say what this project needs in its own model
+  (`.sdk/model/project.aontu`), or extend a target with a component of its
+  own in `.sdk/src/cmp/<target>/`, registered with `registerComponent`,
+  which `voxgig-sdkgen doctor` reports as an addition rather than drift.
 - **Custom features and entire custom targets** arrive through sdkgen
   packages (`voxgig-sdkgen package add`), on the same rails as the
   bundled languages, and `voxgig-sdkgen doctor` reports any drift from
   what a resync would write.
+
+### Project map
+
+| Path | What it holds | Edit it? |
+| --- | --- | --- |
+| `.sdk/model/project.aontu` | This project's own decisions: package names, versions, features and per-target settings | Yes. The scaffold writes it once and never again. |
+| `.sdk/model/text.aontu` | The README wording, in `main.kit.text`: the tagline, the summary and the entity descriptions | Yes. The scaffold writes it once and never again. |
+| `.sdk/model/guide/guide.aontu` | How the spec's paths map onto entities and operations | Yes. The scaffold writes it once and never again. |
+| `.sdk/model/`, the rest | The API model built from the spec, and the target and feature definitions | Not by hand. Generation, `target add` and a new scaffold run rewrite it. |
+| `.sdk/def/` | The OpenAPI spec | Replace it when the API changes. Generation rebuilds the model from it. |
+| `.sdk/src/cmp/<target>/`, `.sdk/tm/<target>/` | The components and templates that generate each target | Only to add a component of your own. `target add` overwrites the copies. |
+| `.sdk/test/` | The shared test cases the generated tests run | No. |
+| `<target>/`, such as `ts/` | One generated SDK per target, with its own tests | No. Generation overwrites it. |
+| `README.md`, `LICENSE`, `Makefile` and the other root files | The repository's generated files | No. Generation overwrites them. |
+
+### Common commands
+
+Run these from `.sdk/`:
+
+```bash
+npm run generate               # regenerate every target from the model
+npm run add-target <target>    # add a target, or resync one after an sdkgen update
+npm run add-feature <feature>  # add a feature to every target
+npx voxgig-sdkgen doctor       # report where .sdk/ differs from what a resync writes
+```
+
+In an SDK directory, `make test` runs that SDK's tests.
 
 How-to: [customize and propagate templates](https://github.com/voxgig/sdkgen/blob/main/docs/how-to/customize-and-propagate-templates.md).
 The full story: [voxgig.com/sdk/custom](https://voxgig.com/sdk/custom).

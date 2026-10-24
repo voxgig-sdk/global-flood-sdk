@@ -180,19 +180,13 @@ main: kit: entity: flood: {
           o: "/v1/flood"
           q: {
             exist: [
-              "apikey"
-              "cell_selection"
-              "daily"
-              "end_date"
-              "ensemble"
-              "forecast_day"
               "latitude"
               "longitude"
-              "past_day"
-              "start_date"
-              "timeformat"
-              "timezone"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

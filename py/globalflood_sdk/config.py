@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -219,6 +220,7 @@ def make_config():
                       "type": "`$ARRAY`",
                       "kind": "query",
                       "example": "river_discharge",
+                      "field": True,
                     },
                     {
                       "name": "end_date",
@@ -248,6 +250,7 @@ def make_config():
                       "kind": "query",
                       "reqd": True,
                       "example": "59.9",
+                      "field": True,
                     },
                     {
                       "name": "longitude",
@@ -256,6 +259,7 @@ def make_config():
                       "kind": "query",
                       "reqd": True,
                       "example": "10.75",
+                      "field": True,
                     },
                     {
                       "name": "past_day",
@@ -284,24 +288,19 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "Europe/Berlin",
+                      "field": True,
                     },
                   ],
                 },
                 "select": {
                   "exist": [
-                    "apikey",
-                    "cell_selection",
-                    "daily",
-                    "end_date",
-                    "ensemble",
-                    "forecast_day",
                     "latitude",
                     "longitude",
-                    "past_day",
-                    "start_date",
-                    "timeformat",
-                    "timezone",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

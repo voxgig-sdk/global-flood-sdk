@@ -79,6 +79,7 @@ module GlobalFloodConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -202,6 +203,7 @@ module GlobalFloodConfig
                         "type" => "`$ARRAY`",
                         "kind" => "query",
                         "example" => "river_discharge",
+                        "field" => true,
                       },
                       {
                         "name" => "end_date",
@@ -231,6 +233,7 @@ module GlobalFloodConfig
                         "kind" => "query",
                         "reqd" => true,
                         "example" => "59.9",
+                        "field" => true,
                       },
                       {
                         "name" => "longitude",
@@ -239,6 +242,7 @@ module GlobalFloodConfig
                         "kind" => "query",
                         "reqd" => true,
                         "example" => "10.75",
+                        "field" => true,
                       },
                       {
                         "name" => "past_day",
@@ -267,24 +271,19 @@ module GlobalFloodConfig
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "Europe/Berlin",
+                        "field" => true,
                       },
                     ],
                   },
                   "select" => {
                     "exist" => [
-                      "apikey",
-                      "cell_selection",
-                      "daily",
-                      "end_date",
-                      "ensemble",
-                      "forecast_day",
                       "latitude",
                       "longitude",
-                      "past_day",
-                      "start_date",
-                      "timeformat",
-                      "timezone",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
